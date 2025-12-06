@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model TourRequest {
+  id                 Int      @id @default(autoincrement())
+  name               String
+  companyName        String
+  phone              String
+  email              String
+  personCount        String
+  locationPreference String
+  tourDate           DateTime
+  marketingConsent   Boolean  @default(false)
+  createdAt          DateTime @default(now())
+}

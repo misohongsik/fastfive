@@ -1,0 +1,34 @@
+
+> temp_project@0.1.0 build
+> next build
+
+ ??Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\misoh\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\misoh\Coupang_NaverBlog_Project\Fastfive\package-lock.json
+
+   ??Next.js 16.0.7 (Turbopack)
+
+   Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./Coupang_NaverBlog_Project/Fastfive/app/layout.tsx
+Module not found: Can't resolve 'next/font/local/target.css'
+unexpected data version
+
+Debug info:
+- Execution of <ModuleAssetContext as AssetContext>::resolve_asset failed
+- Execution of resolve failed
+- Execution of <NextFontLocalResolvePlugin as BeforeResolvePlugin>::before_resolve failed
+- Execution of get_font_fallbacks failed
+- unexpected data version
+Import map: aliased to module 'next' with subpath '/font/local/target.css' inside of [project]/Coupang_NaverBlog_Project/Fastfive
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
