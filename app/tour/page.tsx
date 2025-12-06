@@ -223,6 +223,7 @@ export default function TourPage() {
                                     type="date"
                                     id="tourDate"
                                     name="tourDate"
+                                    min={new Date().toISOString().split('T')[0]}
                                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-white/30 transition-colors text-white scheme-dark"
                                     required
                                 />
@@ -232,7 +233,7 @@ export default function TourPage() {
                             {/* Privacy & Marketing Consent */}
                             <div className="pt-2 pb-2 space-y-4 border-t border-white/10 mt-6">
                                 {/* All Check */}
-                                <div className="flex items-center gap-3 pb-2 pt-4">
+                                <label className="flex items-center gap-3 pb-2 pt-4 cursor-pointer">
                                     <div className="relative flex items-center">
                                         <input
                                             type="checkbox"
@@ -247,12 +248,12 @@ export default function TourPage() {
                                             </svg>
                                         </div>
                                     </div>
-                                    <label htmlFor="allCheck" className="cursor-pointer font-bold text-lg select-none">약관에 모두 동의합니다.</label>
-                                </div>
+                                    <span className="font-bold text-lg select-none">약관에 모두 동의합니다.</span>
+                                </label>
 
                                 {/* Privacy Check */}
                                 <div className="flex items-center gap-3 pl-1">
-                                    <div className="relative flex items-center">
+                                    <label htmlFor="privacyCheck" className="relative flex items-center cursor-pointer">
                                         <input
                                             type="checkbox"
                                             id="privacyCheck"
@@ -266,9 +267,9 @@ export default function TourPage() {
                                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                             </svg>
                                         </div>
-                                    </div>
+                                    </label>
                                     <div className="text-sm text-white/70 select-none">
-                                        상담을 위한 <span className="underline cursor-pointer hover:text-white" onClick={() => setIsPrivacyModalOpen(true)}>개인정보 수집과 이용 동의</span> (필수)
+                                        상담을 위한 <span className="underline cursor-pointer hover:text-white" onClick={(e) => { e.preventDefault(); setIsPrivacyModalOpen(true); }}>개인정보 수집과 이용 동의</span> (필수)
                                     </div>
                                 </div>
                                 {state.errors?.privacyConsent && <p className="text-red-400 text-xs pl-8">{state.errors.privacyConsent}</p>}
@@ -276,7 +277,7 @@ export default function TourPage() {
 
                                 {/* Marketing Check */}
                                 <div className="flex items-center gap-3 pl-1">
-                                    <div className="relative flex items-center">
+                                    <label htmlFor="marketingCheck" className="relative flex items-center cursor-pointer">
                                         <input
                                             type="checkbox"
                                             id="marketingCheck"
@@ -290,9 +291,9 @@ export default function TourPage() {
                                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                             </svg>
                                         </div>
-                                    </div>
+                                    </label>
                                     <div className="text-sm text-white/70 select-none">
-                                        혜택 안내를 위한 <span className="underline cursor-pointer hover:text-white" onClick={() => setIsMarketingModalOpen(true)}>마케팅 활용 동의</span> (선택)
+                                        혜택 안내를 위한 <span className="underline cursor-pointer hover:text-white" onClick={(e) => { e.preventDefault(); setIsMarketingModalOpen(true); }}>마케팅 활용 동의</span> (선택)
                                     </div>
                                 </div>
                             </div>

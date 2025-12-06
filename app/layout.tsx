@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import SmoothScroller from './components/SmoothScroller';
 
+import { pretendard } from './fonts';
+
 export const metadata: Metadata = {
   title: '패스트파이브 | 프리미엄 공유오피스 그 이상의 가치',
   description: '단순한 사무실이 아닙니다. 성공을 위한 완벽한 비즈니스 플랫폼, 패스트파이브. 지금 투어 신청하고 30,000원 상당의 웰컴 키트를 받아보세요.',
@@ -26,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="antialiased selection:bg-white/20 font-sans">
+      <body className={`${pretendard.variable} antialiased selection:bg-white/20 font-sans`}>
         <div className="noise-overlay" />
         <SmoothScroller>
           {children}

@@ -1,0 +1,51 @@
+{
+    "tech_stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Prisma",
+        "GSAP",
+        "Lenis"
+    ],
+    "features": [
+        {
+            "name": "Layout",
+            "description": "Root layout with global styles, fonts, and smooth scrolling context.",
+            "files": [
+                "app/layout.tsx",
+                "app/globals.css"
+            ]
+        },
+        {
+            "name": "UI Components",
+            "description": "Reusable UI components like Buttons, Cards, and Sections.",
+            "files": [
+                "app/components/GlassCard.tsx",
+                "app/components/HeroSection.tsx",
+                "app/components/MagneticButton.tsx",
+                "app/components/ProblemSection.tsx",
+                "app/components/Section.tsx",
+                "app/components/SmoothScroller.tsx",
+                "app/components/SolutionSection.tsx",
+                "app/components/TrustSection.tsx"
+            ]
+        },
+        {
+            "name": "Tour Page",
+            "description": "Tour booking page and related actions.",
+            "files": [
+                "app/tour/page.tsx",
+                "app/tour/actions.ts"
+            ]
+        },
+        {
+            "name": "Configuration",
+            "description": "Project configuration files.",
+            "files": [
+                "next.config.ts",
+                "postcss.config.mjs"
+            ]
+        }
+    ]
+}

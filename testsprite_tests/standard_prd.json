@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "project": "Fastfive Website Frontend",
+    "date": "2025-12-05",
+    "prepared_by": "Software Development Manager"
+  },
+  "product_overview": "Fastfive is a modern web platform using the latest technologies like Next.js 16, React 19, and Tailwind CSS v4, designed to provide a smooth and performant user experience for tour bookings and content presentation.",
+  "core_goals": [
+    "Ensure compatibility and stability with experimental tech stack Next.js 16 and React 19",
+    "Deliver smooth scrolling and performant UI using GSAP and Lenis animation libraries",
+    "Provide reusable and accessible UI components for consistent design across the site",
+    "Implement an engaging and user-friendly tour booking page",
+    "Optimize web performance by using Next.js built-in image and font optimization features"
+  ],
+  "key_features": [
+    "Root layout with global styles, fonts, and a smooth scrolling context for consistent look and feel",
+    "Reusable UI components including Buttons, Cards, Sections, and specialized components like MagneticButton and GlassCard",
+    "Tour booking page with all necessary booking actions and flows",
+    "Use of modern animation libraries GSAP and Lenis to enhance UI interactions",
+    "PostCSS and Tailwind CSS v4 integration with configuration for best styling practices"
+  ],
+  "user_flow_summary": [
+    "User lands on homepage with smooth scrolling and sees content sections styled consistently",
+    "User navigates to the Tour page to browse available tours",
+    "User interacts with booking forms and actions to complete a tour reservation",
+    "Site ensures smooth client-side rendering with immediate feedback on interactions",
+    "System manages fonts and images to reduce layout shifts and improve load times"
+  ],
+  "validation_criteria": [
+    "Verify no CSS warnings or errors related to Tailwind v4 in VS Code and build process",
+    "Ensure package dependencies for Next.js, React, GSAP, Lenis, and other libs are compatible and stable",
+    "Confirm there are no React hydration errors due to HTML semantic or client component misconfiguration",
+    "Check that all client components using browser APIs include explicit \"use client\" directive",
+    "Validate usage of Next.js next/font/local for fonts and next/image for images for optimization and CLS reduction",
+    "End-to-end testing of Tour booking flow for functional correctness"
+  ],
+  "code_summary": {
+    "tech_stack": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Prisma",
+      "GSAP",
+      "Lenis"
+    ],
+    "features": [
+      {
+        "name": "Layout",
+        "description": "Root layout with global styles, fonts, and smooth scrolling context.",
+        "files": [
+          "app/layout.tsx",
+          "app/globals.css"
+        ]
+      },
+      {
+        "name": "UI Components",
+        "description": "Reusable UI components like Buttons, Cards, and Sections.",
+        "files": [
+          "app/components/GlassCard.tsx",
+          "app/components/HeroSection.tsx",
+          "app/components/MagneticButton.tsx",
+          "app/components/ProblemSection.tsx",
+          "app/components/Section.tsx",
+          "app/components/SmoothScroller.tsx",
+          "app/components/SolutionSection.tsx",
+          "app/components/TrustSection.tsx"
+        ]
+      },
+      {
+        "name": "Tour Page",
+        "description": "Tour booking page and related actions.",
+        "files": [
+          "app/tour/page.tsx",
+          "app/tour/actions.ts"
+        ]
+      },
+      {
+        "name": "Configuration",
+        "description": "Project configuration files.",
+        "files": [
+          "next.config.ts",
+          "postcss.config.mjs"
+        ]
+      }
+    ]
+  }
+}

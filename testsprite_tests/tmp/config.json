@@ -1,0 +1,16 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "executionArgs": {
+    "projectName": "fastfive",
+    "projectPath": "C:\\Users\\misoh\\Coupang_NaverBlog_Project\\Fastfive",
+    "testIds": [],
+    "additionalInstruction": "Focus on hydration errors, specific Tailwind v4 compatibility, and functionality of interactive components.",
+    "envs": {
+      "API_KEY": "sk-user-XLJJo3nVe44i_L3wvrqR_5v5NLYZk86_UWouAXpm5FWCLN85XrdOugvPlccEiSG1-Qj9O8-xeby6ao-IH0z3lqfJJmb8MyOpPSpHJoaKJ_jtLvhE_9U2-Mj9WlpCcVeCS6I"
+    }
+  },
+  "proxy": "http://19898077-93f0-42af-8109-8581b3d52757:S31la9DMlWDHZ2q97TcLxKdKtCwMs5RW@tun.testsprite.com:8080"
+}
