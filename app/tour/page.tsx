@@ -105,7 +105,7 @@ export default function TourPage() {
                     <div className="text-center mb-10">
                         <h1 className="text-3xl md:text-4xl font-bold mb-3">Book a Tour</h1>
                         <p className="text-white/60">
-                            투어를 신청하시면 담당자가 24시간 이내에 연락드립니다.<br />
+                            투어를 신청하시면 담당자가 1시간 이내에 연락드립니다.<br />
                             <span className="text-red-400 font-medium">방문 완료 시 웰컴 키트(3만원 상당) 증정</span>
                         </p>
                     </div>
@@ -189,7 +189,7 @@ export default function TourPage() {
                                         required
                                     >
                                         <option value="">선택해주세요</option>
-                                        <option value="1-4">1 ~ 4인</option>
+                                        <option value="2-4">2 ~ 4인</option>
                                         <option value="5-10">5 ~ 10인</option>
                                         <option value="11-20">11 ~ 20인</option>
                                         <option value="21-50">21 ~ 50인</option>

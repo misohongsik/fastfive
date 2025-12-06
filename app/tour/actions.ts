@@ -3,6 +3,7 @@
 import { z } from 'zod';
 import { prisma } from '../lib/prisma';
 import { redirect } from 'next/navigation';
+import { sendNotificationSMS } from '../lib/sms';
 
 const TourSchema = z.object({
     name: z.string().min(2, '이름을 입력해주세요.'),
@@ -39,6 +40,7 @@ export async function submitTourRequest(prevState: any, formData: FormData) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
             message: '입력 내용을 확인해주세요.',
+            success: false,
         };
     }
 
@@ -52,11 +54,23 @@ export async function submitTourRequest(prevState: any, formData: FormData) {
             },
         });
 
-        return { success: true, message: '투어 신청이 완료되었습니다!' };
+        // SMS Notification (Fire and forget, or await if critical)
+        await sendNotificationSMS(
+            dbData.phone,
+            dbData.name,
+            dbData.companyName,
+            dbData.personCount,
+            dbData.locationPreference,
+            dbData.tourDate
+        );
+
+        return { success: true, message: '투어 신청이 완료되었습니다!', errors: undefined };
     } catch (error) {
         console.error('Database Error:', error);
         return {
             message: '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
+            success: false,
+            errors: undefined
         };
     }
 }
