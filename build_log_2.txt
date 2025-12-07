@@ -1,0 +1,30 @@
+
+> fastfive@0.1.0 build
+> next build
+
+ ??Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\misoh\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\misoh\Coupang_NaverBlog_Project\Fastfive\package-lock.json
+
+   ??Next.js 16.0.7 (Turbopack)
+   - Environments: .env
+
+   Creating an optimized production build ...
+ ??Compiled successfully in 2.6s
+   Running TypeScript ...
+Failed to compile.
+
+./app/lib/sms.ts:11:24
+Type error: Value of type 'typeof CoolsmsMessageService' is not callable. Did you mean to include 'new'?
+
+   9 | // Since we are in TS, let's try 'require' to be safe with unknown module structure or straight import.
+  10 | // For coolsms-node-sdk, it is often:
+> 11 | const messageService = mysms(apiKey, apiSecret);
+     |                        ^
+  12 |
+  13 | export async function sendNotificationSMS(
+  14 |     recipientPhone: string,
+Next.js build worker exited with code: 1 and signal: null

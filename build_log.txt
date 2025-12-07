@@ -1,5 +1,5 @@
 
-> temp_project@0.1.0 build
+> fastfive@0.1.0 build
 > next build
 
  ??Warning: Next.js inferred your workspace root, but it may not be correct.
@@ -10,12 +10,13 @@
    * C:\Users\misoh\Coupang_NaverBlog_Project\Fastfive\package-lock.json
 
    ??Next.js 16.0.7 (Turbopack)
+   - Environments: .env
 
    Creating an optimized production build ...
 
 > Build error occurred
 Error: Turbopack build failed with 1 errors:
-./Coupang_NaverBlog_Project/Fastfive/app/layout.tsx
+./Coupang_NaverBlog_Project/Fastfive/app/fonts.ts
 Module not found: Can't resolve 'next/font/local/target.css'
 unexpected data version
 
@@ -27,6 +28,11 @@ Debug info:
 - unexpected data version
 Import map: aliased to module 'next' with subpath '/font/local/target.css' inside of [project]/Coupang_NaverBlog_Project/Fastfive
 
+
+Import trace:
+  Server Component:
+    ./Coupang_NaverBlog_Project/Fastfive/app/fonts.ts
+    ./Coupang_NaverBlog_Project/Fastfive/app/layout.tsx
 
 https://nextjs.org/docs/messages/module-not-found
 

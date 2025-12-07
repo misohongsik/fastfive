@@ -8,7 +8,7 @@ const senderPhone = process.env.COOLSMS_SENDER_PHONE || '01000000000';
 // Ideally: const messageService = new mysms(apiKey, apiSecret) or similar.
 // Since we are in TS, let's try 'require' to be safe with unknown module structure or straight import.
 // For coolsms-node-sdk, it is often:
-const messageService = mysms(apiKey, apiSecret);
+const messageService = new mysms(apiKey, apiSecret);
 
 export async function sendNotificationSMS(
     recipientPhone: string,
@@ -39,7 +39,7 @@ export async function sendNotificationSMS(
             to: senderPhone, // Send TO the admin
             from: senderPhone, // Send FROM the admin (must be registered)
             text: text,
-            autoType: true,
+            autoTypeDetect: true,
         });
 
         console.log('SMS sent successfully:', response);
