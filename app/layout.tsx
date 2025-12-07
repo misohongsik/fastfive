@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import SmoothScroller from './components/SmoothScroller';
+import Navbar from './components/Navbar';
 
 export const metadata: Metadata = {
   title: '패스트파이브 | 프리미엄 공유오피스 그 이상의 가치',
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body className="antialiased selection:bg-white/20 font-sans">
         <div className="noise-overlay" />
         <SmoothScroller>
+          <Navbar />
           {children}
         </SmoothScroller>
       </body>

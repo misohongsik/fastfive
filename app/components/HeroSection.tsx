@@ -6,6 +6,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
 import MagneticButton from './MagneticButton';
 import Link from 'next/link';
+import LiquidBackground from './LiquidBackground'; // Import
+import { LIQUID_PRESETS } from './LiquidPresets'; // Import as named export
+import GlowText from './GlowText'; // Import
+import TypingText from './TypingText'; // Import
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,40 +56,69 @@ export default function HeroSection() {
             ref={containerRef}
             className="relative min-h-screen w-full flex items-center justify-center overflow-hidden px-6 pt-20"
         >
-            <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* 1. DeepDark Liquid Background */}
+            <LiquidBackground options={LIQUID_PRESETS.DeepDark} />
 
-                {/* Left: Typography (Asymmetrical spacing) */}
-                <div ref={textRef} className="lg:col-span-7 flex flex-col gap-6 z-10">
-                    <span className="inline-block text-white/60 font-medium tracking-widest text-sm uppercase mb-4">
-                        Premium Shared Office
-                    </span>
+            <div className="relative z-10 max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-                    <h1 className="text-fluid-h1 font-bold leading-[0.9] -ml-1">
-                        <span className="block text-white">Work where</span>
-                        <span className="block text-white/50 italic font-light">Success</span>
-                        <span className="block text-white">Finds You.</span>
-                    </h1>
+                {/* Left: Typography */}
+                <div ref={textRef} className="lg:col-span-8 flex flex-col gap-8">
 
-                    <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl mix-blend-overlay animate-pulse" />
+                    {/* Subtitle with Typing Animation */}
+                    <div className="overflow-hidden">
+                        <TypingText
+                            text="Premium Shared Office"
+                            className="text-white/60 font-medium tracking-[0.3em] text-sm uppercase"
+                            speed={0.03}
+                        />
+                    </div>
 
-                    {/* Glass Card Floating 1 */}
-                    <div className="absolute top-1/4 right-0 w-80 h-96 glass-panel rounded-3xl transform rotate-[-6deg] p-8 flex flex-col justify-between border-white/20">
-                        <div className="w-12 h-12 rounded-full bg-white/10 mb-4" />
-                        <div className="space-y-4">
-                            <div className="h-4 w-3/4 bg-white/10 rounded" />
-                            <div className="h-4 w-1/2 bg-white/10 rounded" />
+                    {/* Main Title with Glow Effect */}
+                    <div className="-ml-4">
+                        <GlowText
+                            text="FASTFIVE"
+                            glowColor="#ffffff"
+                            size="clamp(4rem, 10vw, 9rem)"
+                            className="justify-start origin-left transform scale-100"
+                        />
+                    </div>
+
+                    <h2 className="text-2xl md:text-3xl text-white/80 font-light leading-relaxed max-w-2xl">
+                        Work where <span className="text-white font-bold italic">Success</span> Finds You.
+                    </h2>
+
+                    <div className="pt-8">
+                        <Link
+                            href="/tour"
+                            className="group relative inline-flex items-center justify-center px-10 py-5 bg-white text-black rounded-full font-bold text-xl transition-all hover:scale-105 active:scale-95"
+                            style={{
+                                boxShadow: '0 0 20px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.2)'
+                            }}
+                        >
+                            <span className="relative z-10">Book a Tour</span>
+                            <div className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300" />
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Right: Abstract Visuals (Kept but integrated) */}
+                <div ref={visualRef} className="hidden lg:block lg:col-span-4 relative h-[600px]">
+                    {/* Glass Card 1 */}
+                    <div className="absolute top-10 right-0 w-72 h-80 glass-panel rounded-3xl transform rotate-[-6deg] p-8 border border-white/20 bg-white/5 backdrop-blur-xl">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-400 to-purple-400 mb-6" />
+                        <div className="space-y-4 opacity-50">
+                            <div className="h-3 w-3/4 bg-white rounded-full" />
+                            <div className="h-3 w-1/2 bg-white rounded-full" />
+                            <div className="h-3 w-full bg-white rounded-full" />
                         </div>
                     </div>
 
-                    {/* Glass Card Floating 2 (Beneath) */}
-                    <div className="absolute bottom-10 left-10 w-64 h-48 glass-panel rounded-2xl transform rotate-[12deg] z-[-1] opacity-70 border-white/10">
+                    {/* Glass Card 2 */}
+                    <div className="absolute top-1/2 left-0 w-64 h-72 glass-panel rounded-3xl transform rotate-[12deg] z-[-1] border border-white/10 bg-white/5 backdrop-blur-md">
+                        <div className="absolute bottom-6 left-6 right-6 h-32 bg-gradient-to-t from-black/20 to-transparent rounded-xl" />
                     </div>
                 </div>
             </div>
-
-            {/* Background Ambience */}
-            <div className="absolute top-0 right-0 w-[50vw] h-[50vh] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[40vw] h-[40vh] bg-blue-900/10 blur-[100px] rounded-full pointer-events-none" />
         </section>
     );
 }

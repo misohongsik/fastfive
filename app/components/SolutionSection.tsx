@@ -3,8 +3,8 @@
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Check, Coffee, Monitor, Users, Zap } from 'lucide-react';
-import GlassCard from './GlassCard';
+import { Coffee, Monitor, Users, Zap } from 'lucide-react';
+import MouseTextEffect from './MouseTextEffect';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,8 +59,6 @@ export default function SolutionSection() {
             }
 
             // Step 3: Drift Animation (Continuous)
-            // Note: This needs to be separate from scrub timeline for continuous motion
-            // But for scrub interaction, we can make them rotate slightly
             tl.to(orbitalRef.current, { rotation: 10, duration: 2 }, "<");
 
         }, sectionRef);
@@ -81,9 +79,14 @@ export default function SolutionSection() {
                 <div className="w-32 h-32 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_100px_rgba(255,255,255,0.3)] mb-8">
                     <span className="font-bold text-xl tracking-tighter">FASTFIVE</span>
                 </div>
-                <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-                    Everything<br />Is Ready.
-                </h2>
+
+                {/* Mouse Effect Title */}
+                <MouseTextEffect
+                    text="Everything Is Ready."
+                    className="text-4xl md:text-6xl font-bold tracking-tight mb-4"
+                    spotlightSize={200}
+                />
+
                 <p className="mt-4 text-white/70 max-w-md">
                     노트북만 가져오세요.<br />
                     나머지는 패스트파이브가 준비했습니다.

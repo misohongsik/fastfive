@@ -95,8 +95,8 @@ export default function TourPage() {
                 <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-900/10 blur-[100px] rounded-full" />
             </div>
 
-            <div className="relative z-10 w-full max-w-2xl my-10">
-                <Link href="/" className="inline-flex items-center text-white/50 hover:text-white mb-8 transition-colors">
+            <div className="relative z-50 w-full max-w-2xl my-10">
+                <Link href="/" className="inline-flex items-center text-white hover:text-white/80 mb-8 transition-colors px-4 py-2 rounded-lg bg-black/20 hover:bg-black/40 backdrop-blur-md border border-white/10">
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back to Home
                 </Link>
