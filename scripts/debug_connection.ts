@@ -11,7 +11,8 @@ async function main() {
         console.log('✅ Connection Successful!');
 
         // 2. Check current database name
-        const [dbResult] = await prisma.$queryRaw`SELECT DATABASE() as dbName`;
+        const result = await prisma.$queryRaw`SELECT DATABASE() as dbName` as any[];
+        const dbResult = result[0];
         console.log('📂 Current Database:', dbResult);
 
         // 3. List tables (MySQL specific)
