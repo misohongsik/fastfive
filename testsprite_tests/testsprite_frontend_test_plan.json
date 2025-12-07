@@ -1,93 +1,169 @@
 [
   {
     "id": "TC001",
-    "title": "Verify compatibility and stability of Next.js 16 and React 19",
-    "description": "Ensure that the project builds and runs without errors or warnings when using Next.js 16 and React 19, verifying there are no compatibility issues or deprecated usage.",
+    "title": "Verify global layout rendering and smooth scrolling context",
+    "description": "Ensure that the root layout renders correctly with global styles, fonts, and enables smooth scrolling context for consistent look and feel across the site.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Run a clean install of all dependencies including Next.js 16 and React 19"
-      },
-      {
-        "type": "action",
-        "description": "Build the project using the configured build process"
+        "description": "Load the homepage"
       },
       {
         "type": "assertion",
-        "description": "Check that the build completes successfully with no compatibility warnings or errors"
-      },
-      {
-        "type": "action",
-        "description": "Start the development server and navigate through major pages including homepage and tour page"
+        "description": "Verify that global styles and fonts defined in app/globals.css are applied"
       },
       {
         "type": "assertion",
-        "description": "Verify no runtime console errors or hydration mismatches appear"
+        "description": "Verify the presence of smooth scrolling context provided by SmoothScroller component"
+      },
+      {
+        "type": "assertion",
+        "description": "Check smooth scrolling works using Lenis library on scroll events"
       }
     ]
   },
   {
     "id": "TC002",
-    "title": "Test smooth scrolling and UI performance using GSAP and Lenis",
-    "description": "Validate that the smooth scrolling context provided by Lenis and animations by GSAP work seamlessly across supported browsers without jank or stutter.",
-    "category": "functional",
+    "title": "Ensure React client components include \"use client\" directive",
+    "description": "Verify all React client components that use browser APIs include the explicit \"use client\" directive to avoid hydration errors.",
+    "category": "error handling",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Open the homepage and scroll through content sections"
+        "description": "Inspect all client components such as MagneticButton, GlassCard, and SmoothScroller for presence of \"use client\" directive"
       },
       {
         "type": "assertion",
-        "description": "Confirm scroll is smooth without frame drops or janky behavior"
-      },
-      {
-        "type": "action",
-        "description": "Interact with animated components on the homepage and tour page"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify animations trigger correctly and complete without errors"
+        "description": "Confirm each client component that accesses browser APIs has \"use client\" directive at the top of the file"
       }
     ]
   },
   {
     "id": "TC003",
-    "title": "Verify accessibility and consistent styling of reusable UI components",
-    "description": "Check all reusable UI components such as Buttons, Cards, Sections, MagneticButton, and GlassCard for accessibility compliance and consistent styling across the site.",
-    "category": "ui",
+    "title": "Validate no React hydration errors on initial render",
+    "description": "Confirm that the site renders without any React hydration errors by ensuring semantic HTML and correct use of React 19 features.",
+    "category": "error handling",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Render all UI components in their typical states and usage contexts"
+        "description": "Load homepage and tour pages in different browsers"
       },
       {
         "type": "assertion",
-        "description": "Check that components use proper ARIA attributes and keyboard navigation is supported"
+        "description": "Check browser console to ensure no hydration errors are reported"
       },
       {
         "type": "assertion",
-        "description": "Confirm styling matches design specifications and there are no visual inconsistencies"
+        "description": "Verify HTML structure is semantic and matches between server and client rendering"
       }
     ]
   },
   {
     "id": "TC004",
-    "title": "Validate Tour booking page functionality and booking flow",
-    "description": "End-to-end test the tour booking page ensuring all booking actions such as form input, validation, submission, and confirmation work as expected.",
+    "title": "Verify smooth UI animations with GSAP and Lenis integration",
+    "description": "Check that animations triggered by GSAP and scroll handling via Lenis behave smoothly without jank or frame drops.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to the Tour page"
+        "description": "Navigate through homepage and tour pages"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify GSAP animations trigger correctly on expected elements, e.g., MagneticButton hover, GlassCard appearance"
+      },
+      {
+        "type": "assertion",
+        "description": "Validate Lenis smooth scrolling behavior executes without stutter or latency"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Confirm reusable UI components render consistently across pages",
+    "description": "Ensure Buttons, GlassCard, Sections, and specialized components render with correct styles and functionality throughout the site.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load various pages like homepage, tour page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify Button components respond visually on hover and click"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify GlassCard and MagneticButton render with correct styles and animations"
+      },
+      {
+        "type": "assertion",
+        "description": "Check accessibility attributes (aria-labels, roles) for these components"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Validate Tailwind CSS v4 integration and configuration",
+    "description": "Check that Tailwind CSS v4 is correctly configured without warnings or errors during development and build process.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Build the project using the configured PostCSS and Tailwind CSS setup"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm no CSS warnings or errors related to Tailwind CSS v4 appear in terminal or VS Code Problems pane"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Verify Next.js built-in image and font optimization for layout stability",
+    "description": "Check that usage of next/image and next/font/local reduce cumulative layout shifts (CLS) and improve load performance on all pages.",
+    "category": "performance",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load homepage and tour page while monitoring layout shifts using browser devtools performance tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify images are implemented with next/image component and fonts with next/font/local"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that CLS values are below acceptable thresholds (e.g., CLS < 0.1)"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Functional end-to-end test of Tour booking flow",
+    "description": "Verify that a user can successfully complete booking a tour including form filling, validation, submission, and confirmation.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to tour page"
       },
       {
         "type": "action",
-        "description": "Fill in all required booking form fields with valid data"
+        "description": "Select a tour from the available list"
+      },
+      {
+        "type": "action",
+        "description": "Fill out all required booking form fields with valid data"
       },
       {
         "type": "action",
@@ -95,165 +171,82 @@
       },
       {
         "type": "assertion",
-        "description": "Verify submission succeeds and confirmation message or page is displayed"
-      },
-      {
-        "type": "action",
-        "description": "Attempt to submit booking form with invalid or missing data"
+        "description": "Verify successful booking confirmation message or page is shown"
       },
       {
         "type": "assertion",
-        "description": "Check appropriate validation messages are shown and submission is blocked"
-      }
-    ]
-  },
-  {
-    "id": "TC005",
-    "title": "Check CSS and Tailwind CSS v4 compliance without warnings or errors",
-    "description": "Verify there are no CSS warnings or errors related to Tailwind CSS v4 syntax or configuration both in IDE (VS Code) and during build.",
-    "category": "error handling",
-    "priority": "High",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Open the project in VS Code and check the Problems/Warnings tab for CSS or Tailwind warnings"
-      },
-      {
-        "type": "assertion",
-        "description": "Ensure there are no Tailwind v4 related warnings or errors in the IDE"
-      },
-      {
-        "type": "action",
-        "description": "Run the build process and monitor console output for any CSS errors or warnings"
-      },
-      {
-        "type": "assertion",
-        "description": "Confirm the build process completes without any Tailwind CSS or PostCSS warnings or errors"
-      }
-    ]
-  },
-  {
-    "id": "TC006",
-    "title": "Verify explicit 'use client' directives on client components",
-    "description": "Ensure that all client components using browser APIs include an explicit 'use client' directive to prevent hydration errors and maintain correct client/server separation.",
-    "category": "error handling",
-    "priority": "High",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Review all client components source files for the presence of 'use client' directive"
-      },
-      {
-        "type": "assertion",
-        "description": "Validate all client components that use browser APIs have 'use client' directive as the first statement"
-      },
-      {
-        "type": "action",
-        "description": "Run the application and verify no React hydration warnings or errors occur"
-      },
-      {
-        "type": "assertion",
-        "description": "Confirm smooth client-side rendering without hydration mismatches"
-      }
-    ]
-  },
-  {
-    "id": "TC007",
-    "title": "Validate usage of next/font/local and next/image optimizations",
-    "description": "Check that fonts are loaded via next/font/local and images use next/image component for optimization and cumulative layout shift (CLS) reduction.",
-    "category": "performance",
-    "priority": "Medium",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Inspect font imports to confirm next/font/local usage"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify fonts are optimized and fallback invisible text issues are not present"
-      },
-      {
-        "type": "action",
-        "description": "Review all image usages to confirm next/image component is used"
-      },
-      {
-        "type": "assertion",
-        "description": "Ensure images load responsively with placeholders or lazy loading and no CLS spikes occur"
-      }
-    ]
-  },
-  {
-    "id": "TC008",
-    "title": "Check global styles application and smooth scrolling context",
-    "description": "Verify that the root layout applies global styles and fonts correctly, and the smooth scrolling context is initialized and functional site-wide.",
-    "category": "functional",
-    "priority": "Medium",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Load the homepage and inspect applied global styles including fonts and base CSS"
-      },
-      {
-        "type": "assertion",
-        "description": "Confirm global styles are applied consistently across all pages"
-      },
-      {
-        "type": "action",
-        "description": "Verify the smooth scrolling context is active by testing scroll behavior on multiple pages"
-      },
-      {
-        "type": "assertion",
-        "description": "Validate that smooth scrolling context affects all scrollable elements without unexpected behavior"
+        "description": "Confirm booking data is stored or transmitted correctly (if testable)"
       }
     ]
   },
   {
     "id": "TC009",
-    "title": "Test client-side rendering feedback and UI responsiveness",
-    "description": "Ensure that all user interactions provide immediate visual feedback and the UI does not freeze or lag during client-side navigation and booking actions.",
-    "category": "ui",
+    "title": "Tour booking form error handling for invalid inputs",
+    "description": "Test validation and error messages for required fields, incorrect formats, and boundary cases in the tour booking form.",
+    "category": "error handling",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate between homepage and tour page multiple times"
-      },
-      {
-        "type": "assertion",
-        "description": "Check that navigation is smooth with loading indicators if any and no layout shifts occur"
+        "description": "Navigate to tour booking form"
       },
       {
         "type": "action",
-        "description": "Perform booking form interactions such as typing and submissions"
+        "description": "Leave required fields empty and attempt to submit"
       },
       {
         "type": "assertion",
-        "description": "Validate that UI updates promptly with correct feedback after each action"
+        "description": "Ensure appropriate validation error messages are displayed for each missing field"
+      },
+      {
+        "type": "action",
+        "description": "Input invalid data formats (e.g., invalid email or date) and submit"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify error messages are shown for invalid formats"
       }
     ]
   },
   {
     "id": "TC010",
-    "title": "Verify project configuration files correctness",
-    "description": "Validate that next.config.ts and postcss.config.mjs are correctly configured for the project requirements, supporting Tailwind CSS v4, PostCSS, and Next.js optimizations.",
+    "title": "Check package dependencies compatibility and stability",
+    "description": "Ensure that all key package dependencies (Next.js 16, React 19, GSAP, Lenis, Tailwind CSS v4) are installed correctly and compatible without version conflicts.",
+    "category": "error handling",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Inspect package.json and lockfile for dependency versions"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that installed packages correspond to intended versions without conflicts"
+      },
+      {
+        "type": "assertion",
+        "description": "Run 'npm audit' or equivalent to confirm no critical vulnerabilities"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Validate accessibility compliance of reusable UI components",
+    "description": "Confirm that all reusable UI components meet accessibility standards including keyboard navigation and ARIA attributes.",
     "category": "functional",
     "priority": "Medium",
     "steps": [
       {
         "type": "action",
-        "description": "Review next.config.ts file for correct Next.js settings and image/font optimization config"
+        "description": "Focus and navigate through UI components using keyboard only"
       },
       {
         "type": "assertion",
-        "description": "Ensure configuration supports required features and contains no invalid settings"
-      },
-      {
-        "type": "action",
-        "description": "Review postcss.config.mjs for Tailwind CSS plugin setup and compatibility with Tailwind v4"
+        "description": "Verify focus is visible and logical on Buttons, MagneticButton, GlassCard, and form elements"
       },
       {
         "type": "assertion",
-        "description": "Verify PostCSS configuration enables styling best practices without errors"
+        "description": "Confirm presence of ARIA roles and labels where appropriate"
       }
     ]
   }

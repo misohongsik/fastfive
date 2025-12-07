@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+import TypingText from './TypingText';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,17 +55,26 @@ export default function TrustSection() {
             <div ref={footerRef} className="relative px-6 md:px-12 pb-20">
                 <div className="border-t border-black/10 pt-20 flex flex-col items-center text-center">
 
-                    <h2 className="text-fluid-h1 font-black leading-[0.85] tracking-tighter mb-10">
-                        WORK<br />
-                        DIFFERENTLY
-                    </h2>
+                    <div className="flex flex-col items-center mb-10">
+                        <TypingText text="WORK" className="text-fluid-h1 font-black leading-[0.85] tracking-tighter" stagger={0.2} />
+                        <TypingText text="DIFFERENTLY" className="text-fluid-h1 font-black leading-[0.85] tracking-tighter" stagger={0.2} delay={1.2} />
+                    </div>
 
                     <p className="text-xl md:text-2xl text-black/60 max-w-2xl mb-16 font-light">
                         지금 무료 투어를 신청하고,<br />
                         <span className="font-bold text-black border-b-2 border-black">30,000원 상당의 웰컴 키트</span>를 받아보세요.
                     </p>
 
-                    <Link href="/tour" className="group relative w-full md:w-auto min-w-[300px] overflow-hidden rounded-full bg-black text-white px-12 py-8 text-xl font-bold transition-all hover:scale-105 active:scale-95 inline-block">
+                    <Link
+                        href="/tour"
+                        className="group relative w-full md:w-auto min-w-[300px] overflow-hidden rounded-full bg-black text-white px-12 py-8 text-xl font-bold transition-all hover:scale-105 active:scale-95 inline-block"
+                        style={{
+                            boxShadow: '0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 0, 0, 0.1)' // Black Glow base
+                        }}
+                    >
+                        {/* White Glow Animation on Hover */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/20 blur-xl rounded-full" />
+
                         <span className="relative z-10 flex items-center justify-center gap-2 group-hover:-translate-y-[150%] transition-transform duration-500 ease-in-out">
                             Book a Tour Now <ArrowUpRight />
                         </span>

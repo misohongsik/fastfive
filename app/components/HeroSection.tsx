@@ -74,7 +74,7 @@ export default function HeroSection() {
                     </div>
 
                     {/* Main Title with Glow Effect */}
-                    <div className="-ml-4">
+                    <div className="-ml-4 -my-4">
                         <GlowText
                             text="FASTFIVE"
                             glowColor="#ffffff"
@@ -83,9 +83,11 @@ export default function HeroSection() {
                         />
                     </div>
 
-                    <h2 className="text-2xl md:text-3xl text-white/80 font-light leading-relaxed max-w-2xl">
-                        Work where <span className="text-white font-bold italic">Success</span> Finds You.
-                    </h2>
+                    <div className="flex flex-wrap items-baseline gap-x-3 text-2xl md:text-3xl text-white/80 font-light leading-relaxed max-w-2xl">
+                        <TypingText text="Work where" delay={1.5} speed={0.03} />
+                        <TypingText text="Success" className="text-white font-bold italic" delay={2.0} speed={0.03} />
+                        <TypingText text="Finds You." delay={2.5} speed={0.03} />
+                    </div>
 
                     <div className="pt-8">
                         <Link

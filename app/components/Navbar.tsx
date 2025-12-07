@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import GlowText from './GlowText';
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
@@ -26,8 +27,8 @@ export default function Navbar() {
         >
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 {/* Logo */}
-                <Link href="/" className="text-2xl font-bold tracking-tighter text-white hover:opacity-80 transition-opacity">
-                    FASTFIVE
+                <Link href="/" className="hover:opacity-80 transition-opacity">
+                    <GlowText text="FASTFIVE" size="1.5rem" glowColor="#ffffff" />
                 </Link>
 
                 {/* Glow Button */}

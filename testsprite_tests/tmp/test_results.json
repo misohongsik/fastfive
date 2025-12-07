@@ -1,16 +1,1 @@
-[
-  {
-    "projectId": "61017059-a629-4e80-89ab-8725c57a214b",
-    "testId": "9ef11a32-4498-4dc8-a702-313701d366f5",
-    "userId": "a408b4b8-6001-703c-6bad-8076a847f5e6",
-    "title": "TC_LOCAL_SCRIPT_RUNNER-Run Local Diagnostic Script (Python Wrapper)",
-    "description": "Execute the scripts/debug_connection.ts using subprocess to leverage the local node environment and Prisma configuration.",
-    "code": "import subprocess\nimport os\n\ndef test_run_local_diagnostic_script():\n    project_root = os.getcwd()\n    command = \"npx tsx scripts/debug_connection.ts\"\n\n    result = subprocess.run(command, shell=True, capture_output=True, text=True, cwd=project_root)\n\n    print(\"STDOUT:\\n\", result.stdout)\n    print(\"STDERR:\\n\", result.stderr)\n\n    assert result.returncode == 0, \"Diagnostic Failed\"\n\n    print(\"Diagnostic Passed\")\n\ntest_run_local_diagnostic_script()",
-    "testStatus": "FAILED",
-    "testError": "Traceback (most recent call last):\n  File \"/var/task/handler.py\", line 258, in run_with_retry\n    exec(code, exec_env)\n  File \"<string>\", line 17, in <module>\n  File \"<string>\", line 13, in test_run_local_diagnostic_script\nAssertionError: Diagnostic Failed\n",
-    "testType": "BACKEND",
-    "createFrom": "mcp",
-    "created": "2025-12-07T08:31:01.394Z",
-    "modified": "2025-12-07T08:31:08.019Z"
-  }
-]
+[]

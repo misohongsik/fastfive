@@ -6,6 +6,7 @@ import gsap from 'gsap';
 interface GlowTextProps {
     text: string;
     glowColor?: string;
+    textColor?: string;
     className?: string;
     size?: string;
 }
@@ -13,6 +14,7 @@ interface GlowTextProps {
 export default function GlowText({
     text,
     glowColor = '#00a8ff',
+    textColor = 'white',
     className = "",
     size = "6rem"
 }: GlowTextProps) {
@@ -58,8 +60,11 @@ export default function GlowText({
             {/* Front Crisp Text */}
             <h1
                 ref={textRef}
-                className="relative z-10 text-white font-black tracking-tighter mix-blend-overlay overflow-visible whitespace-nowrap"
-                style={{ fontSize: size }}
+                className="relative z-10 font-black tracking-tighter mix-blend-overlay overflow-visible whitespace-nowrap"
+                style={{
+                    fontSize: size,
+                    color: textColor
+                }}
             >
                 {text}
             </h1>

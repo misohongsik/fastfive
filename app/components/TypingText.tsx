@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextPlugin } from 'gsap/TextPlugin';
 
-gsap.registerPlugin(TextPlugin);
+gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
 interface TypingTextProps {
     text: string;
@@ -40,6 +41,11 @@ export default function TypingText({
             stagger: stagger,
             ease: "back.out(1.7)",
             delay: delay,
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top 80%", // Starts when top of text hits 80% viewport height
+                toggleActions: "play none none reverse", // Replays when scrolling back up? or just "play none none none" for once
+            }
         });
 
     }, [text, delay, stagger]);

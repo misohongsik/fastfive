@@ -1,19 +1,20 @@
 {
   "status": "commited",
-  "type": "backend",
+  "type": "frontend",
   "scope": "codebase",
   "localEndpoint": "http://localhost:3000",
-  "backendAuthType": "public",
   "executionArgs": {
     "projectName": "Fastfive",
     "projectPath": "c:\\Users\\misoh\\Coupang_NaverBlog_Project\\Fastfive",
     "testIds": [
-      "TC_LOCAL_SCRIPT_RUNNER"
+      "TC001_Home_Page_Load",
+      "TC002_Tour_Page_Navigation",
+      "TC003_Tour_Form_Submission"
     ],
-    "additionalInstruction": "Generate a PYTHON script that runs the local TypeScript diagnostic script.\n1. Import 'subprocess' and 'os'.\n2. Define the command: `npx tsx scripts/debug_connection.ts`.\n3. Set the current working directory to the project root.\n4. Run the command using `subprocess.run(command, shell=True, capture_output=True, text=True)`.\n5. Print `stdout` and `stderr`.\n6. If return code is 0, print \"Diagnostic Passed\". Else print \"Diagnostic Failed\".\nThis allows TestSprite to utilize the correctly configured local environment (Prisma, node_modules) without needing complex Python dependencies.",
+    "additionalInstruction": "Verify the Liquid Background animation, Glow Text visibility, and the 'Book a Tour' button interactivity. Also check the 'Back to Home' link on the tour page.",
     "envs": {
       "API_KEY": "sk-user-XLJJo3nVe44i_L3wvrqR_5v5NLYZk86_UWouAXpm5FWCLN85XrdOugvPlccEiSG1-Qj9O8-xeby6ao-IH0z3lqfJJmb8MyOpPSpHJoaKJ_jtLvhE_9U2-Mj9WlpCcVeCS6I"
     }
   },
-  "proxy": "http://d186d6f6-f6ac-4b8f-b4fa-e2d718d6393f:TjKQOcmyeEG5V3UDpGzeF05tDElDnFAs@tun.testsprite.com:8080"
+  "proxy": "http://0dc16756-a8ae-4b6f-b87b-c9c63cae119e:lmEersTCISIqkNmVhGoiYJ73DuBPZuNI@tun.testsprite.com:8080"
 }

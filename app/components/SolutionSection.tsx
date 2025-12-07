@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Coffee, Monitor, Users, Zap } from 'lucide-react';
 import MouseTextEffect from './MouseTextEffect';
+import GlowText from './GlowText';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -76,8 +77,8 @@ export default function SolutionSection() {
 
             {/* Central Core */}
             <div ref={coreRef} className="relative z-20 flex flex-col items-center justify-center text-center">
-                <div className="w-32 h-32 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_100px_rgba(255,255,255,0.3)] mb-8">
-                    <span className="font-bold text-xl tracking-tighter">FASTFIVE</span>
+                <div className="w-32 h-32 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_100px_rgba(255,255,255,0.3)] mb-8 overflow-hidden">
+                    <GlowText text="FASTFIVE" size="1.1rem" glowColor="#000000" textColor="black" className="text-black" />
                 </div>
 
                 {/* Mouse Effect Title */}
