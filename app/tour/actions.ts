@@ -54,8 +54,8 @@ export async function submitTourRequest(prevState: any, formData: FormData) {
             },
         });
 
-        // SMS Notification (Fire and forget, or await if critical)
-        await sendNotificationSMS(
+        // SMS Notification
+        const smsResult = await sendNotificationSMS(
             dbData.phone,
             dbData.name,
             dbData.companyName,
@@ -63,6 +63,16 @@ export async function submitTourRequest(prevState: any, formData: FormData) {
             dbData.locationPreference,
             dbData.tourDate
         );
+
+        if (!smsResult.success) {
+            console.error("SMS Failed Details:", smsResult.error);
+            // Return failure to UI to show the specific error message
+            return {
+                success: false,
+                message: `투어 신청 DB저장 성공, but 문자 실패: ${smsResult.error}`,
+                errors: undefined
+            };
+        }
 
         return { success: true, message: '투어 신청이 완료되었습니다!', errors: undefined };
     } catch (error) {

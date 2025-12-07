@@ -7,19 +7,18 @@ export async function sendNotificationSMS(
     personCount: string,
     location: string,
     date: string
-) {
-    // Lazy load env vars and service to prevent module-level crashes
+): Promise<{ success: boolean; error?: string }> {
+    // Lazy load env vars
     const apiKey = process.env.COOLSMS_API_KEY;
     const apiSecret = process.env.COOLSMS_API_SECRET;
     const senderPhone = process.env.COOLSMS_SENDER_PHONE;
 
     if (!apiKey || !apiSecret || !senderPhone) {
         console.warn('Skipping SMS: Missing COOLSMS environment variables.');
-        return false;
+        return { success: false, error: 'Environment variables missing (API Key/Secret/Sender)' };
     }
 
     try {
-        // Initialize service here, only when needed and safe
         const messageService = new mysms(apiKey, apiSecret);
 
         const text = `[패스트파이브 투어신청]
@@ -33,17 +32,19 @@ export async function sendNotificationSMS(
 빠르게 연락주세요!`;
 
         const response = await messageService.sendOne({
-            to: senderPhone, // Send TO the admin
-            from: senderPhone, // Send FROM the admin (must be registered)
+            to: senderPhone,
+            from: senderPhone,
             text: text,
             autoTypeDetect: true,
         });
 
         console.log('SMS sent successfully:', response);
-        return true;
-    } catch (error) {
+        return { success: true };
+
+    } catch (error: any) {
         console.error('SMS sending failed:', error);
-        // Do not throw, so the user flow isn't interrupted
-        return false;
+        // Extract meaningful error message
+        const errorMsg = error.message || JSON.stringify(error);
+        return { success: false, error: `SMS Send Failed: ${errorMsg}` };
     }
 }
