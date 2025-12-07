@@ -41,20 +41,23 @@ export default function SolutionSection() {
 
             // Step 2: Orbitals Float In
             const orbitals = orbitalRef.current?.children;
+            const isMobile = window.innerWidth < 768; // Simple check
+            const modifier = isMobile ? 0.4 : 1; // Reduce distance to 40% on mobile
+
             if (orbitals) {
                 Array.from(orbitals).forEach((orbital, index) => {
                     const item = solutions[index];
                     tl.fromTo(orbital,
                         { x: 0, y: 0, opacity: 0, scale: 0.5 },
                         {
-                            x: item.x,
-                            y: item.y,
+                            x: item.x * modifier, // Apply modifier
+                            y: item.y * modifier, // Apply modifier
                             opacity: 1,
                             scale: 1,
                             duration: 1.5,
                             ease: "power3.out"
                         },
-                        "<+=0.2" // Overlap slightly with core animation
+                        "<+=0.2"
                     );
                 });
             }
