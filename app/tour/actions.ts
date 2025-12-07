@@ -2,7 +2,6 @@
 
 import { z } from 'zod';
 import { prisma } from '../lib/prisma';
-import { redirect } from 'next/navigation';
 import { sendNotificationSMS } from '../lib/sms';
 
 const TourSchema = z.object({

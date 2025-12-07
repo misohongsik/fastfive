@@ -19,8 +19,13 @@ export async function sendNotificationSMS(
     if (!senderPhone) missingVars.push('COOLSMS_SENDER_PHONE');
 
     if (missingVars.length > 0) {
+        // Debug: What keys ARE available?
+        const availableKeys = Object.keys(process.env).filter(k => k.startsWith('COOL'));
         console.warn(`Skipping SMS: Missing vars: ${missingVars.join(', ')}`);
-        return { success: false, error: `Environment variables missing: ${missingVars.join(', ')}` };
+        return {
+            success: false,
+            error: `Environment variables missing: ${missingVars.join(', ')}. Details: Found keys [${availableKeys.join(', ')}]`
+        };
     }
 
     try {
