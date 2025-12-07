@@ -1,0 +1,52 @@
+[
+  {
+    "id": "TC001",
+    "title": "verify smooth scrolling context initialization",
+    "description": "Test the root layout to ensure the smooth scrolling context is properly initialized and provides consistent smooth scrolling behavior across the site."
+  },
+  {
+    "id": "TC002",
+    "title": "validate reusable ui components rendering",
+    "description": "Verify that all reusable UI components such as Buttons, Cards, Sections, MagneticButton, and GlassCard render correctly with expected styles and behaviors."
+  },
+  {
+    "id": "TC003",
+    "title": "test tour booking page functionality",
+    "description": "Perform end-to-end testing of the tour booking page including browsing tours, interacting with booking forms, and completing a reservation to ensure functional correctness."
+  },
+  {
+    "id": "TC004",
+    "title": "check animation libraries integration",
+    "description": "Validate that GSAP and Lenis animation libraries are correctly integrated and animations trigger smoothly without performance issues on UI interactions."
+  },
+  {
+    "id": "TC005",
+    "title": "ensure tailwind css v4 styling compliance",
+    "description": "Verify that there are no CSS warnings or errors related to Tailwind CSS v4 in the VS Code environment and during the build process."
+  },
+  {
+    "id": "TC006",
+    "title": "confirm nextjs font and image optimization",
+    "description": "Test usage of Next.js next/font/local for fonts and next/image for images to ensure optimization and reduction of cumulative layout shifts (CLS)."
+  },
+  {
+    "id": "TC007",
+    "title": "validate client component directives",
+    "description": "Check that all client components using browser APIs include the explicit \"use client\" directive to prevent React hydration errors."
+  },
+  {
+    "id": "TC008",
+    "title": "verify package dependencies compatibility",
+    "description": "Ensure that all package dependencies for Next.js, React, GSAP, Lenis, and other libraries are compatible and stable with no conflicts."
+  },
+  {
+    "id": "TC009",
+    "title": "test global styles and font loading",
+    "description": "Verify that global styles and fonts defined in the root layout and globals.css are loaded correctly and applied consistently across all pages."
+  },
+  {
+    "id": "TC010",
+    "title": "check configuration files correctness",
+    "description": "Validate the correctness and best practices compliance of project configuration files such as next.config.ts and postcss.config.mjs."
+  }
+]

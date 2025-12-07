@@ -1,0 +1,20 @@
+ 개발 계획서 (TestSprite Debugging)
+🔍 분석 (Analysis):
+현재 '투어 신청' 기능이 서버 에러를 뱉고 있음.
+TestSprite를 통해 
+submitTourRequest
+ 함수(서버 액션)가 정상 동작하는지 테스트 케이스를 생성하여 검증.
+🛠 테스트 전략 (Strategy):
+Backend Test 모드 사용.
+app/tour/actions.ts
+의 
+submitTourRequest
+ 함수를 집중 테스트.
+올바른 데이터 입력 시 DB 저장 및 SMS 발송 로직이 에러 없이 수행되는지 확인.
+📂 파일별 변경 예고:
+testsprite_tests/ 폴더 내에 새로운 테스트 파일 생성 및 실행 결과 리포트 저장.
+📝 작업 순서:
+TestSprite 초기화 (Bootstrap)
+백엔드 테스트 플랜 생성 (Generate Plan)
+테스트 코드 생성 및 실행 (Run)
+결과 리포트 분석

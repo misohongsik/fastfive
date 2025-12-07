@@ -1,51 +1,84 @@
 {
     "tech_stack": [
+        "TypeScript",
         "Next.js",
         "React",
-        "TypeScript",
-        "Tailwind CSS",
         "Prisma",
-        "GSAP",
-        "Lenis"
+        "Tailwind CSS",
+        "MySQL"
     ],
     "features": [
         {
-            "name": "Layout",
-            "description": "Root layout with global styles, fonts, and smooth scrolling context.",
+            "name": "Tour Request Submission API",
+            "description": "Handles the submission of tour requests. It validates the input data using Zod, creates a new record in the database using Prisma, and sends an SMS notification to the administrator using CoolSMS.",
             "files": [
-                "app/layout.tsx",
-                "app/globals.css"
-            ]
-        },
-        {
-            "name": "UI Components",
-            "description": "Reusable UI components like Buttons, Cards, and Sections.",
-            "files": [
-                "app/components/GlassCard.tsx",
-                "app/components/HeroSection.tsx",
-                "app/components/MagneticButton.tsx",
-                "app/components/ProblemSection.tsx",
-                "app/components/Section.tsx",
-                "app/components/SmoothScroller.tsx",
-                "app/components/SolutionSection.tsx",
-                "app/components/TrustSection.tsx"
-            ]
-        },
-        {
-            "name": "Tour Page",
-            "description": "Tour booking page and related actions.",
-            "files": [
-                "app/tour/page.tsx",
-                "app/tour/actions.ts"
-            ]
-        },
-        {
-            "name": "Configuration",
-            "description": "Project configuration files.",
-            "files": [
-                "next.config.ts",
-                "postcss.config.mjs"
-            ]
+                "app/tour/actions.ts",
+                "app/lib/prisma.ts",
+                "app/lib/sms.ts",
+                "prisma/schema.prisma"
+            ],
+            "api_doc": {
+                "openapi": "3.0.0",
+                "info": {
+                    "title": "Tour Request API",
+                    "version": "1.0.0"
+                },
+                "paths": {
+                    "/tour/actions": {
+                        "post": {
+                            "summary": "Submit a tour request",
+                            "requestBody": {
+                                "required": true,
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "companyName": {
+                                                    "type": "string"
+                                                },
+                                                "phone": {
+                                                    "type": "string"
+                                                },
+                                                "personCount": {
+                                                    "type": "string"
+                                                },
+                                                "tourDate": {
+                                                    "type": "string",
+                                                    "format": "date"
+                                                },
+                                                "timeSlot": {
+                                                    "type": "string"
+                                                },
+                                                "locationPreference": {
+                                                    "type": "string"
+                                                },
+                                                "privacyConsent": {
+                                                    "type": "boolean"
+                                                },
+                                                "marketingConsent": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "responses": {
+                                "200": {
+                                    "description": "Successful submission"
+                                },
+                                "500": {
+                                    "description": "Internal Server Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     ]
 }
