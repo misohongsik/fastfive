@@ -61,7 +61,7 @@ export default function ProblemSection() {
 
             // Cards Stagger Effect
             // explicit array conversion for safety
-            const cards = gsap.utils.toArray(gridRef.current.children);
+            const cards = gsap.utils.toArray(gridRef.current!.children);
             if (cards.length > 0) {
                 gsap.from(cards, {
                     y: 100,
