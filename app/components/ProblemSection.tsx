@@ -76,14 +76,14 @@ export default function ProblemSection() {
 
     return (
         <section ref={sectionRef} className="relative bg-[#050505] text-white">
-            <div ref={triggerRef} className="h-screen w-full flex items-center overflow-hidden">
+            <div ref={triggerRef} className="h-screen w-full flex items-end md:items-center pb-24 md:pb-0 overflow-hidden">
 
                 {/* Intro Text - Increased top spacing for mobile to clear navbar */}
-                <div className="absolute left-6 md:left-20 top-48 md:top-20 z-10 max-w-sm pointer-events-none mix-blend-difference">
+                <div className="absolute left-6 md:left-20 top-24 md:top-20 z-10 max-w-sm pointer-events-none mix-blend-difference">
                     <span className="text-red-500 font-bold tracking-widest uppercase mb-2 block">
                         The Reality
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+                    <h2 className="text-3xl md:text-5xl font-bold leading-tight">
                         사무실 구하기,<br />
                         왜 이렇게<br />
                         <span className="text-white/50">힘들까요?</span>
@@ -91,11 +91,11 @@ export default function ProblemSection() {
                 </div>
 
                 {/* Horizontal Container */}
-                <div ref={horizontalRef} className="flex gap-20 pl-[40vw] pr-[10vw]">
+                <div ref={horizontalRef} className="flex gap-10 md:gap-20 pl-[10vw] md:pl-[40vw] pr-[10vw]">
                     {problems.map((item) => (
                         <div
                             key={item.id}
-                            className="w-[80vw] md:w-[600px] h-[60vh] bg-white/5 border border-white/10 rounded-3xl p-10 flex flex-col justify-between backdrop-blur-sm shrink-0 hover:bg-white/10 transition-colors"
+                            className="w-[85vw] md:w-[600px] h-[50vh] md:h-[60vh] bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 flex flex-col justify-between backdrop-blur-sm shrink-0 hover:bg-white/10 transition-colors"
                         >
                             <div>
                                 <div className="text-6xl md:text-8xl font-bold text-white/10 mb-6">
