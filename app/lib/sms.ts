@@ -13,13 +13,18 @@ export async function sendNotificationSMS(
     const apiSecret = process.env.COOLSMS_API_SECRET;
     const senderPhone = process.env.COOLSMS_SENDER_PHONE;
 
-    if (!apiKey || !apiSecret || !senderPhone) {
-        console.warn('Skipping SMS: Missing COOLSMS environment variables.');
-        return { success: false, error: 'Environment variables missing (API Key/Secret/Sender)' };
+    const missingVars = [];
+    if (!apiKey) missingVars.push('COOLSMS_API_KEY');
+    if (!apiSecret) missingVars.push('COOLSMS_API_SECRET');
+    if (!senderPhone) missingVars.push('COOLSMS_SENDER_PHONE');
+
+    if (missingVars.length > 0) {
+        console.warn(`Skipping SMS: Missing vars: ${missingVars.join(', ')}`);
+        return { success: false, error: `Environment variables missing: ${missingVars.join(', ')}` };
     }
 
     try {
-        const messageService = new mysms(apiKey, apiSecret);
+        const messageService = new mysms(apiKey as string, apiSecret as string);
 
         const text = `[패스트파이브 투어신청]
 신청자: ${customerName}
@@ -32,8 +37,8 @@ export async function sendNotificationSMS(
 빠르게 연락주세요!`;
 
         const response = await messageService.sendOne({
-            to: senderPhone,
-            from: senderPhone,
+            to: senderPhone as string,
+            from: senderPhone as string,
             text: text,
             autoTypeDetect: true,
         });
