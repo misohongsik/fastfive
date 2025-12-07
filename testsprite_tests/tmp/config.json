@@ -1,20 +1,20 @@
 {
   "status": "commited",
-  "type": "backend",
+  "type": "frontend",
   "scope": "codebase",
   "localEndpoint": "http://localhost:3000",
-  "backendAuthType": "public",
   "executionArgs": {
     "projectName": "Fastfive",
-    "projectPath": "c:\\Users\\misoh\\Coupang_NaverBlog_Project\\Fastfive",
+    "projectPath": "C:\\Users\\misoh\\Coupang_NaverBlog_Project\\Fastfive",
     "testIds": [
       "TC003",
       "TC004",
-      "TC005"
+      "TC007"
     ],
-    "additionalInstruction": "Focus specifically on validating SMS environment variable loading (NEXT_SMS_ prefix) and message sending failure handling. Mock the CoolSMS SDK to separate logic testing from actual network calls.",
+    "additionalInstruction": "Execute tests TC003, TC004, and TC007. Check for text overlap in Problem Section. Report strict intersection. Use existing test plan in `testsprite_tests/testsprite_frontend_test_plan.json`.",
     "envs": {
       "API_KEY": "sk-user-XLJJo3nVe44i_L3wvrqR_5v5NLYZk86_UWouAXpm5FWCLN85XrdOugvPlccEiSG1-Qj9O8-xeby6ao-IH0z3lqfJJmb8MyOpPSpHJoaKJ_jtLvhE_9U2-Mj9WlpCcVeCS6I"
     }
-  }
+  },
+  "proxy": "http://fa9d27d0-1bb4-4e2a-8291-93580064148a:gI0nm1v9k6u7og36gOe98AVY7mCbspe0@tun.testsprite.com:8080"
 }

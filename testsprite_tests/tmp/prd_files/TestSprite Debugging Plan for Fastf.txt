@@ -1,0 +1,36 @@
+TestSprite Debugging Plan for Fastfive Text Overlap
+1. Target Component & Issue
+Component: 
+app/components/ProblemSection.tsx
+Reported Issue: Text overlapping in the second section ("The Reality" section).
+Potential Areas:
+"The Reality" Label vs Main Heading ("사무실 구하기...")
+Main Heading vs Content Cards (due to absolute positioning)
+Card Number ("01") vs Card Title ("보증금의 압박")
+2. Debugging Steps (TestSprite Instructions)
+A. Element Collision Detection
+ Run Layout Inspection Script:
+Select elements: h2 (Section Title), .text-red-500 (Label), .text-6xl (Card Number), h3 (Card Title).
+Calculate getBoundingClientRect() for each.
+Check for intersection areas > 0 pixels between adjacent text blocks.
+B. CSS & Style Verification
+ Computed Styles:
+Verify line-height values. Are they unitless (e.g., 1, 1.2) or fixed (px)?
+Check mb-* (margin-bottom) application.
+Hypothesis: flex flex-col justify-between on the card might be forcing elements together if the card height (40vh) is too small for the content on specific mobile aspect ratios.
+C. Responsive Viewport Tests
+ Test Resolutions:
+Mobile Small: 320px width / 568px height (iPhone SE) - Critical (Height constraints often cause overlap in vh based layouts).
+Mobile Medium: 375px / 667px.
+Tablet: 768px.
+ Check constraints:
+Is h-[40vh] sufficient to hold the text content without collapsing margins?
+D. Animation Interference
+ GSAP Check:
+Disable GSAP temporarily. Does the HTML/CSS layout overlap without animation?
+If no, the issue is native CSS.
+If yes, skewX or xPercent transformations might be creating visual artifacts.
+3. Recommended Fixes based on Findings
+If Card Content Overlaps: Change h-[40vh] to min-h-[40vh] or h-auto to allow expansion.
+If Section Title Overlaps Cards: Increase top position of Cards or adjust pl/pr padding values.
+If Line-Height Issue: Force explicit pixel values for line-height instead of relative tailwind classes.

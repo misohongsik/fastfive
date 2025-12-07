@@ -1,252 +1,197 @@
 [
   {
     "id": "TC001",
-    "title": "Verify global layout rendering and smooth scrolling context",
-    "description": "Ensure that the root layout renders correctly with global styles, fonts, and enables smooth scrolling context for consistent look and feel across the site.",
+    "title": "Verify no text overlap in Problem Section 'The Reality' on desktop",
+    "description": "Check that the section title, labels, card numbers, and card titles do not visually overlap or collide when viewed on desktop viewport.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Load the homepage"
+        "description": "Navigate to the landing page and scroll down to the Problem Section labeled 'The Reality'"
+      },
+      {
+        "type": "action",
+        "description": "Inspect the bounding rectangles of section title, labels, card numbers, and card titles using layout inspection tools"
       },
       {
         "type": "assertion",
-        "description": "Verify that global styles and fonts defined in app/globals.css are applied"
+        "description": "Confirm no intersection between bounding rectangles of the key text elements"
       },
       {
         "type": "assertion",
-        "description": "Verify the presence of smooth scrolling context provided by SmoothScroller component"
-      },
-      {
-        "type": "assertion",
-        "description": "Check smooth scrolling works using Lenis library on scroll events"
+        "description": "Visually verify that text elements do not overlap or get clipped"
       }
     ]
   },
   {
     "id": "TC002",
-    "title": "Ensure React client components include \"use client\" directive",
-    "description": "Verify all React client components that use browser APIs include the explicit \"use client\" directive to avoid hydration errors.",
-    "category": "error handling",
+    "title": "Check CSS style properties related to text layout in Problem Section",
+    "description": "Verify CSS properties like line-height, margin-bottom, padding, min-height, and height constraints on the text elements in the Problem Section.",
+    "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Inspect all client components such as MagneticButton, GlassCard, and SmoothScroller for presence of \"use client\" directive"
+        "description": "Open the ProblemSection.tsx and corresponding style sheets"
+      },
+      {
+        "type": "action",
+        "description": "Check line-height values on section titles, labels, card numbers, and card titles"
+      },
+      {
+        "type": "action",
+        "description": "Verify margin-bottom and padding are sufficient to prevent text collisions"
+      },
+      {
+        "type": "action",
+        "description": "Confirm flexible height properties (min-height or auto height) are used for cards"
       },
       {
         "type": "assertion",
-        "description": "Confirm each client component that accesses browser APIs has \"use client\" directive at the top of the file"
+        "description": "All relevant text elements have explicit line-height set and consistent margin/padding to avoid overlap"
+      },
+      {
+        "type": "assertion",
+        "description": "Card heights are flexible and do not cause content clipping"
       }
     ]
   },
   {
     "id": "TC003",
-    "title": "Validate no React hydration errors on initial render",
-    "description": "Confirm that the site renders without any React hydration errors by ensuring semantic HTML and correct use of React 19 features.",
-    "category": "error handling",
+    "title": "Test responsive layout for Problem Section on mobile small viewport (320x568)",
+    "description": "Ensure that on a small mobile viewport, all text elements in the Problem Section are readable and do not overlap.",
+    "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Load homepage and tour pages in different browsers"
+        "description": "Simulate or use a device of 320 pixels width by 568 pixels height"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the Problem Section 'The Reality'"
       },
       {
         "type": "assertion",
-        "description": "Check browser console to ensure no hydration errors are reported"
+        "description": "Confirm that section title, labels, card numbers, and card titles are fully visible without overlap"
       },
       {
         "type": "assertion",
-        "description": "Verify HTML structure is semantic and matches between server and client rendering"
+        "description": "Check that no horizontal scroll or clipping occurs"
       }
     ]
   },
   {
     "id": "TC004",
-    "title": "Verify smooth UI animations with GSAP and Lenis integration",
-    "description": "Check that animations triggered by GSAP and scroll handling via Lenis behave smoothly without jank or frame drops.",
+    "title": "Test responsive layout for Problem Section on mobile medium viewport (375x667)",
+    "description": "Verify the display of section titles, labels, and cards in the Problem Section on a medium mobile resolution without text overlap.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate through homepage and tour pages"
+        "description": "Set viewport size to 375px width and 667px height"
+      },
+      {
+        "type": "action",
+        "description": "Navigate and review the Problem Section 'The Reality'"
       },
       {
         "type": "assertion",
-        "description": "Verify GSAP animations trigger correctly on expected elements, e.g., MagneticButton hover, GlassCard appearance"
-      },
-      {
-        "type": "assertion",
-        "description": "Validate Lenis smooth scrolling behavior executes without stutter or latency"
+        "description": "No text collisions or visual clipping among the text elements"
       }
     ]
   },
   {
     "id": "TC005",
-    "title": "Confirm reusable UI components render consistently across pages",
-    "description": "Ensure Buttons, GlassCard, Sections, and specialized components render with correct styles and functionality throughout the site.",
+    "title": "Test responsive layout for Problem Section on tablet viewport (768px wide)",
+    "description": "Confirm the layout integrity and absence of overlapping text in the Problem Section when viewed on a tablet-sized viewport.",
     "category": "functional",
-    "priority": "Medium",
+    "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Load various pages like homepage, tour page"
+        "description": "Configure viewport width to 768 pixels"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Problem Section 'The Reality'"
       },
       {
         "type": "assertion",
-        "description": "Verify Button components respond visually on hover and click"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify GlassCard and MagneticButton render with correct styles and animations"
-      },
-      {
-        "type": "assertion",
-        "description": "Check accessibility attributes (aria-labels, roles) for these components"
+        "description": "Verify visually and programmatically that no overlap or collision occurs in text elements"
       }
     ]
   },
   {
     "id": "TC006",
-    "title": "Validate Tailwind CSS v4 integration and configuration",
-    "description": "Check that Tailwind CSS v4 is correctly configured without warnings or errors during development and build process.",
-    "category": "error handling",
+    "title": "Validate impact of GSAP animations on text overlap in Problem Section",
+    "description": "Test if GSAP animation transforms cause any text overlapping or layout issues in 'The Reality' subsection.",
+    "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Build the project using the configured PostCSS and Tailwind CSS setup"
+        "description": "Load the page with GSAP animations enabled and observe the Problem Section"
       },
       {
         "type": "assertion",
-        "description": "Confirm no CSS warnings or errors related to Tailwind CSS v4 appear in terminal or VS Code Problems pane"
+        "description": "Ensure no text overlapping or visual artifacts occur while animations are running"
+      },
+      {
+        "type": "action",
+        "description": "Temporarily disable GSAP animations"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm that disabling GSAP removes any overlapping issues if they existed"
       }
     ]
   },
   {
     "id": "TC007",
-    "title": "Verify Next.js built-in image and font optimization for layout stability",
-    "description": "Check that usage of next/image and next/font/local reduce cumulative layout shifts (CLS) and improve load performance on all pages.",
-    "category": "performance",
+    "title": "Verify padding and positioning CSS fixes prevent text overlap",
+    "description": "Apply recommended CSS changes to min-height, padding, and line-height and validate that these changes resolve overlaps without introducing new issues.",
+    "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Load homepage and tour page while monitoring layout shifts using browser devtools performance tab"
+        "description": "Apply CSS adjustments as recommended to ProblemSection styles"
+      },
+      {
+        "type": "action",
+        "description": "Reload the Problem Section in multiple viewport sizes"
       },
       {
         "type": "assertion",
-        "description": "Verify images are implemented with next/image component and fonts with next/font/local"
+        "description": "No overlap or clipping occurs in any text elements"
       },
       {
         "type": "assertion",
-        "description": "Check that CLS values are below acceptable thresholds (e.g., CLS < 0.1)"
+        "description": "Spacing between text elements remains visually consistent and clean"
       }
     ]
   },
   {
     "id": "TC008",
-    "title": "Functional end-to-end test of Tour booking flow",
-    "description": "Verify that a user can successfully complete booking a tour including form filling, validation, submission, and confirmation.",
-    "category": "functional",
-    "priority": "High",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Navigate to tour page"
-      },
-      {
-        "type": "action",
-        "description": "Select a tour from the available list"
-      },
-      {
-        "type": "action",
-        "description": "Fill out all required booking form fields with valid data"
-      },
-      {
-        "type": "action",
-        "description": "Submit the booking form"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify successful booking confirmation message or page is shown"
-      },
-      {
-        "type": "assertion",
-        "description": "Confirm booking data is stored or transmitted correctly (if testable)"
-      }
-    ]
-  },
-  {
-    "id": "TC009",
-    "title": "Tour booking form error handling for invalid inputs",
-    "description": "Test validation and error messages for required fields, incorrect formats, and boundary cases in the tour booking form.",
-    "category": "error handling",
-    "priority": "High",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Navigate to tour booking form"
-      },
-      {
-        "type": "action",
-        "description": "Leave required fields empty and attempt to submit"
-      },
-      {
-        "type": "assertion",
-        "description": "Ensure appropriate validation error messages are displayed for each missing field"
-      },
-      {
-        "type": "action",
-        "description": "Input invalid data formats (e.g., invalid email or date) and submit"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify error messages are shown for invalid formats"
-      }
-    ]
-  },
-  {
-    "id": "TC010",
-    "title": "Check package dependencies compatibility and stability",
-    "description": "Ensure that all key package dependencies (Next.js 16, React 19, GSAP, Lenis, Tailwind CSS v4) are installed correctly and compatible without version conflicts.",
-    "category": "error handling",
-    "priority": "Medium",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Inspect package.json and lockfile for dependency versions"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify that installed packages correspond to intended versions without conflicts"
-      },
-      {
-        "type": "assertion",
-        "description": "Run 'npm audit' or equivalent to confirm no critical vulnerabilities"
-      }
-    ]
-  },
-  {
-    "id": "TC011",
-    "title": "Validate accessibility compliance of reusable UI components",
-    "description": "Confirm that all reusable UI components meet accessibility standards including keyboard navigation and ARIA attributes.",
+    "title": "Isolate debugging scope to ProblemSection.tsx and related styles",
+    "description": "Ensure all code changes and fixes for text overlap issues are contained only within ProblemSection.tsx and its relevant styles, preventing side effects elsewhere.",
     "category": "functional",
     "priority": "Medium",
     "steps": [
       {
         "type": "action",
-        "description": "Focus and navigate through UI components using keyboard only"
+        "description": "Review code commits and diffs to confirm only ProblemSection.tsx and related CSS files are modified"
       },
       {
         "type": "assertion",
-        "description": "Verify focus is visible and logical on Buttons, MagneticButton, GlassCard, and form elements"
+        "description": "No unintended changes to other components or global styles"
       },
       {
-        "type": "assertion",
-        "description": "Confirm presence of ARIA roles and labels where appropriate"
+        "type": "action",
+        "description": "Perform sanity regression tests on unrelated components to ensure no impact"
       }
     ]
   }

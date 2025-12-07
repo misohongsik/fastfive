@@ -1,136 +1,97 @@
 {
   "meta": {
-    "project": "Fastfive Tour Request System",
+    "project": "TestSprite Debugging Plan for Fastfive Text Overlap",
     "date": "2025-12-05",
     "prepared_by": "Software Development Manager"
   },
-  "product_overview": "Fastfive is a cutting-edge shared office platform powered by Next.js, React, and Tailwind CSS, featuring an interactive tour request system that enables users to submit tour requests, which are validated, stored securely in a database, and trigger SMS notifications to staff for prompt follow-up. The system is architected for performance and reliability, leveraging modern frontend technologies and a robust backend integrating Prisma ORM and CoolSMS messaging SDK.",
+  "product_overview": "This document outlines the debugging plan and requirements to resolve the text overlap issue in the 'Problem Section' of the TestSprite frontend, specifically focusing on the second section named 'The Reality'. The plan addresses layout collisions, style verifications, responsive design challenges, and potential animation disruptions caused by GSAP.",
   "core_goals": [
-    "Provide a seamless and reliable user flow for submitting tour requests on the Fastfive platform.",
-    "Ensure robust server-side validation and error handling for tour request submissions.",
-    "Automate SMS notifications to staff upon successful tour request creation for improved customer engagement.",
-    "Maintain high frontend performance and compatibility across modern web browsers and mobile devices.",
-    "Enable environment diagnostics to verify runtime variable injection for smooth deployment and operations."
+    "Identify the root causes of text overlapping issues in the Problem Section, particularly in the second subsection titled 'The Reality'.",
+    "Ensure text elements including section titles, labels, card numbers, and card titles do not collide visually across all device resolutions.",
+    "Verify and improve CSS styles related to line-height, margin, padding, and height constraints to accommodate content without overlap.",
+    "Test responsive behavior on critical viewport sizes (mobile small, medium, tablet) to confirm compatibility and readability.",
+    "Evaluate impact of GSAP animations on layout and ensure animations do not cause visual artifacts or overlapping text.",
+    "Recommend and implement CSS fixes to resolve overlap issues and maintain a consistent and clean user interface across all devices."
   ],
   "key_features": [
-    "Tour Request Submission: A form that validates user inputs on the server side using Zod validation schema.",
-    "Server Action Handling: The submitTourRequest function processes incoming form data, persists it via Prisma ORM into MySQL database, and triggers SMS notification.",
-    "SMS Notification Integration: Uses CoolSMS SDK to send SMS alerts about new tour requests, with rigorous environment variable checks for API key availability.",
-    "Environment Variables Diagnostic API: An API endpoint that reports the presence and correctness of required environment variables (NEXT_SMS keys).",
-    "Modern Frontend Stack: Utilizes Next.js 16, React 19, GSAP animations, and Tailwind CSS v4 for an engaging, fluid user interface.",
-    "Responsive UI with refined interactions: Including sticky and glassmorphic navbar, dynamic text effects, and touch-optimized buttons for mobile devices."
+    "Detection of element collisions using layout inspection scripts to measure bounding rectangles and identify intersections between key text elements.",
+    "Detailed CSS and style verification including line-height values, margin bottom application, and flexbox behaviors that may affect layout integrity.",
+    "Responsive viewport testing methodology covering various device widths and heights focusing on height constraints and visual space allocation.",
+    "Temporary disabling of GSAP animations to isolate whether animation transforms contribute to text overlap.",
+    "Specific, actionable recommendations to adjust min-height, padding, positioning, and line-height CSS properties to fix identified overlap issues.",
+    "Focused debugging on Problem Section component using relevant React/TypeScript files to ensure targeted improvements."
   ],
   "user_flow_summary": [
-    "User visits Fastfive homepage and clicks the 'Book a Tour' button to navigate to the tour request page (/tour).",
-    "User fills out the tour request form with required details: name, phone number, company, number of persons, location, and tour date.",
-    "User submits the form triggering a server action that validates inputs via Zod and attempts to store data in the MySQL database using Prisma ORM.",
-    "Upon successful storage, the system triggers the sendNotificationSMS utility to dispatch an SMS alert to staff including the customer's details.",
-    "User receives feedback on submission success or errors through a JSON response.",
-    "Admin or developer can call the /api/env-check endpoint to verify if the environment variables required for SMS sending are correctly injected in Vercel deployment."
+    "User visits the landing page and scrolls down to the Problem Section labeled 'The Reality'.",
+    "User views the section title, label text, and descriptive cards with numbers and titles without text collisions or overlaps.",
+    "Responsive adjustment triggers on different viewport sizes to ensure legible layout and no overlap.",
+    "Animations run smoothly without causing layout distortions or overlapping text.",
+    "After fixes, user experiences clear, readable text blocks in the Problem Section across devices without visual clutter or content clipping.",
+    "Validation testing confirms all breakpoints and animation toggles maintain text clarity and proper spacing."
   ],
   "validation_criteria": [
-    "Form submission succeeds only with valid, complete inputs validated by Zod schema.",
-    "Database record is successfully created for each valid tour request submission.",
-    "SMS notification is sent successfully when environment variables are correctly set; failure returns a detailed error.",
-    "CSS and styling conform to Tailwind CSS v4 standards without visual glitches on desktop and mobile.",
-    "Frontend and server code properly handle React hydration and client/server component boundaries as per Next.js 16 requirements.",
-    "Environment Diagnostic API correctly reports presence or absence of NEXT_SMS environment variables in all deployment contexts (local, preview, production)."
+    "No intersection of bounding client rectangles between section title, labels, card numbers, and card titles as measured by layout inspection script.",
+    "Explicit line-height values are set and tested across all affected text elements to prevent line collapse.",
+    "Cards in Problem Section use flexible heights (min-height or auto height) instead of fixed vh heights where necessary to prevent content clipping.",
+    "Padding and positioning adjustments maintain consistent spacing between text elements across all tested viewport sizes.",
+    "Disabling GSAP temporarily removes any overlapping issues, identifying if animation transforms cause visual artifacts.",
+    "Functional testing on mobile small (320x568), mobile medium (375x667), and tablet (768px wide) viewports show no text overlap.",
+    "Code changes are isolated to ProblemSection.tsx and relevant style sheets to ensure targeted debugging scope."
   ],
   "code_summary": {
     "tech_stack": [
       "TypeScript",
+      "React",
       "Next.js",
-      "MySQL",
-      "Prisma",
+      "Tailwind CSS",
       "GSAP",
-      "Tailwind CSS"
+      "Three.js",
+      "Prisma"
     ],
     "features": [
       {
-        "name": "submitTourRequest",
-        "description": "Server Action to handle tour request form submissions. Validates input using Zod, creates a database record via Prisma, and triggers the SMS notification logic.",
+        "name": "Hero Section",
+        "description": "Main landing area with intro text and visuals",
         "files": [
-          "app/tour/actions.ts"
-        ],
-        "api_doc": {
-          "summary": "Submit Tour Request",
-          "parameters": [
-            {
-              "name": "formData",
-              "in": "body",
-              "schema": {
-                "type": "FormData"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Returns an object with success boolean and operational message/errors."
-            }
-          }
-        }
+          "app/components/HeroSection.tsx"
+        ]
       },
       {
-        "name": "sendNotificationSMS",
-        "description": "Core utility function to send SMS notifications. It handles environment variable validation (checking NEXT_SMS_* keys) and initializes the CoolSMS SDK to send the message.",
+        "name": "Problem Section",
+        "description": "Section highlighting user pain points (e.g., The Reality), containing text and cards",
         "files": [
-          "app/lib/sms.ts"
-        ],
-        "api_doc": {
-          "summary": "Send SMS Notification",
-          "parameters": [
-            {
-              "name": "recipientPhone",
-              "type": "string"
-            },
-            {
-              "name": "customerName",
-              "type": "string"
-            },
-            {
-              "name": "companyName",
-              "type": "string"
-            },
-            {
-              "name": "personCount",
-              "type": "string"
-            },
-            {
-              "name": "location",
-              "type": "string"
-            },
-            {
-              "name": "date",
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "Success": {
-              "success": true
-            },
-            "Failure": {
-              "success": false,
-              "error": "Detailed error string"
-            }
-          }
-        }
+          "app/components/ProblemSection.tsx"
+        ]
       },
       {
-        "name": "Environment Check API",
-        "description": "Diagnostic API route to inspect runtime environment variables. Used to verify if Vercel has correctly injected the required keys.",
+        "name": "Solution Section",
+        "description": "Section presenting solutions to the problems",
         "files": [
-          "app/api/env-check/route.ts"
-        ],
-        "api_doc": {
-          "summary": "Check Environment Variables",
-          "method": "GET",
-          "path": "/api/env-check",
-          "responses": {
-            "200": {
-              "description": "JSON object listing found keys and counts."
-            }
-          }
-        }
+          "app/components/SolutionSection.tsx"
+        ]
+      },
+      {
+        "name": "Trust Section",
+        "description": "Social proof and trust indicators",
+        "files": [
+          "app/components/TrustSection.tsx"
+        ]
+      },
+      {
+        "name": "Navigation",
+        "description": "Site navigation bar",
+        "files": [
+          "app/components/Navbar.tsx"
+        ]
+      },
+      {
+        "name": "Visual Effects",
+        "description": "Interactive background and scroll effects",
+        "files": [
+          "app/components/LiquidBackground.tsx",
+          "app/components/SmoothScroller.tsx",
+          "app/components/MouseTextEffect.tsx"
+        ]
       }
     ]
   }

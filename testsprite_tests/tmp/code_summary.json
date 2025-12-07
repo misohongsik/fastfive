@@ -1,98 +1,57 @@
 {
     "tech_stack": [
         "TypeScript",
+        "React",
         "Next.js",
-        "MySQL",
-        "Prisma",
+        "Tailwind CSS",
         "GSAP",
-        "Tailwind CSS"
+        "Three.js",
+        "Prisma"
     ],
     "features": [
         {
-            "name": "submitTourRequest",
-            "description": "Server Action to handle tour request form submissions. Validates input using Zod, creates a database record via Prisma, and triggers the SMS notification logic.",
+            "name": "Hero Section",
+            "description": "Main landing area with intro text and visuals",
             "files": [
-                "app/tour/actions.ts"
-            ],
-            "api_doc": {
-                "summary": "Submit Tour Request",
-                "parameters": [
-                    {
-                        "name": "formData",
-                        "in": "body",
-                        "schema": {
-                            "type": "FormData"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Returns an object with success boolean and operational message/errors."
-                    }
-                }
-            }
+                "app/components/HeroSection.tsx"
+            ]
         },
         {
-            "name": "sendNotificationSMS",
-            "description": "Core utility function to send SMS notifications. It handles environment variable validation (checking NEXT_SMS_* keys) and initializes the CoolSMS SDK to send the message.",
+            "name": "Problem Section",
+            "description": "Section highlighting user pain points (e.g., The Reality), containing text and cards",
             "files": [
-                "app/lib/sms.ts"
-            ],
-            "api_doc": {
-                "summary": "Send SMS Notification",
-                "parameters": [
-                    {
-                        "name": "recipientPhone",
-                        "type": "string"
-                    },
-                    {
-                        "name": "customerName",
-                        "type": "string"
-                    },
-                    {
-                        "name": "companyName",
-                        "type": "string"
-                    },
-                    {
-                        "name": "personCount",
-                        "type": "string"
-                    },
-                    {
-                        "name": "location",
-                        "type": "string"
-                    },
-                    {
-                        "name": "date",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "Success": {
-                        "success": true
-                    },
-                    "Failure": {
-                        "success": false,
-                        "error": "Detailed error string"
-                    }
-                }
-            }
+                "app/components/ProblemSection.tsx"
+            ]
         },
         {
-            "name": "Environment Check API",
-            "description": "Diagnostic API route to inspect runtime environment variables. Used to verify if Vercel has correctly injected the required keys.",
+            "name": "Solution Section",
+            "description": "Section presenting solutions to the problems",
             "files": [
-                "app/api/env-check/route.ts"
-            ],
-            "api_doc": {
-                "summary": "Check Environment Variables",
-                "method": "GET",
-                "path": "/api/env-check",
-                "responses": {
-                    "200": {
-                        "description": "JSON object listing found keys and counts."
-                    }
-                }
-            }
+                "app/components/SolutionSection.tsx"
+            ]
+        },
+        {
+            "name": "Trust Section",
+            "description": "Social proof and trust indicators",
+            "files": [
+                "app/components/TrustSection.tsx"
+            ]
+        },
+        {
+            "name": "Navigation",
+            "description": "Site navigation bar",
+            "files": [
+                "app/components/Navbar.tsx"
+            ]
+        },
+        {
+            "name": "Visual Effects",
+            "description": "Interactive background and scroll effects",
+            "files": [
+                "app/components/LiquidBackground.tsx",
+                "app/components/SmoothScroller.tsx",
+                "app/components/MouseTextEffect.tsx"
+            ]
         }
     ]
 }
