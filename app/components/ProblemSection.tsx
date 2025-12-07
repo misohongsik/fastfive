@@ -79,7 +79,7 @@ export default function ProblemSection() {
             <div ref={triggerRef} className="h-screen w-full flex items-center overflow-hidden">
 
                 {/* Intro Text (Fixed Position logic could be added here, currently scrolling with flow) */}
-                <div className="absolute left-10 md:left-20 top-20 z-10 max-w-sm pointer-events-none mix-blend-difference">
+                <div className="absolute left-6 md:left-20 top-32 md:top-20 z-10 max-w-sm pointer-events-none mix-blend-difference">
                     <span className="text-red-500 font-bold tracking-widest uppercase mb-2 block">
                         The Reality
                     </span>
