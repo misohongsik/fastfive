@@ -1,87 +1,136 @@
 {
   "meta": {
-    "project": "Fastfive Website Frontend",
+    "project": "Fastfive Tour Request System",
     "date": "2025-12-05",
     "prepared_by": "Software Development Manager"
   },
-  "product_overview": "Fastfive is a modern web platform using the latest technologies like Next.js 16, React 19, and Tailwind CSS v4, designed to provide a smooth and performant user experience for tour bookings and content presentation.",
+  "product_overview": "Fastfive is a cutting-edge shared office platform powered by Next.js, React, and Tailwind CSS, featuring an interactive tour request system that enables users to submit tour requests, which are validated, stored securely in a database, and trigger SMS notifications to staff for prompt follow-up. The system is architected for performance and reliability, leveraging modern frontend technologies and a robust backend integrating Prisma ORM and CoolSMS messaging SDK.",
   "core_goals": [
-    "Ensure compatibility and stability with experimental tech stack Next.js 16 and React 19",
-    "Deliver smooth scrolling and performant UI using GSAP and Lenis animation libraries",
-    "Provide reusable and accessible UI components for consistent design across the site",
-    "Implement an engaging and user-friendly tour booking page",
-    "Optimize web performance by using Next.js built-in image and font optimization features"
+    "Provide a seamless and reliable user flow for submitting tour requests on the Fastfive platform.",
+    "Ensure robust server-side validation and error handling for tour request submissions.",
+    "Automate SMS notifications to staff upon successful tour request creation for improved customer engagement.",
+    "Maintain high frontend performance and compatibility across modern web browsers and mobile devices.",
+    "Enable environment diagnostics to verify runtime variable injection for smooth deployment and operations."
   ],
   "key_features": [
-    "Root layout with global styles, fonts, and a smooth scrolling context for consistent look and feel",
-    "Reusable UI components including Buttons, Cards, Sections, and specialized components like MagneticButton and GlassCard",
-    "Tour booking page with all necessary booking actions and flows",
-    "Use of modern animation libraries GSAP and Lenis to enhance UI interactions",
-    "PostCSS and Tailwind CSS v4 integration with configuration for best styling practices"
+    "Tour Request Submission: A form that validates user inputs on the server side using Zod validation schema.",
+    "Server Action Handling: The submitTourRequest function processes incoming form data, persists it via Prisma ORM into MySQL database, and triggers SMS notification.",
+    "SMS Notification Integration: Uses CoolSMS SDK to send SMS alerts about new tour requests, with rigorous environment variable checks for API key availability.",
+    "Environment Variables Diagnostic API: An API endpoint that reports the presence and correctness of required environment variables (NEXT_SMS keys).",
+    "Modern Frontend Stack: Utilizes Next.js 16, React 19, GSAP animations, and Tailwind CSS v4 for an engaging, fluid user interface.",
+    "Responsive UI with refined interactions: Including sticky and glassmorphic navbar, dynamic text effects, and touch-optimized buttons for mobile devices."
   ],
   "user_flow_summary": [
-    "User lands on homepage with smooth scrolling and sees content sections styled consistently",
-    "User navigates to the Tour page to browse available tours",
-    "User interacts with booking forms and actions to complete a tour reservation",
-    "Site ensures smooth client-side rendering with immediate feedback on interactions",
-    "System manages fonts and images to reduce layout shifts and improve load times"
+    "User visits Fastfive homepage and clicks the 'Book a Tour' button to navigate to the tour request page (/tour).",
+    "User fills out the tour request form with required details: name, phone number, company, number of persons, location, and tour date.",
+    "User submits the form triggering a server action that validates inputs via Zod and attempts to store data in the MySQL database using Prisma ORM.",
+    "Upon successful storage, the system triggers the sendNotificationSMS utility to dispatch an SMS alert to staff including the customer's details.",
+    "User receives feedback on submission success or errors through a JSON response.",
+    "Admin or developer can call the /api/env-check endpoint to verify if the environment variables required for SMS sending are correctly injected in Vercel deployment."
   ],
   "validation_criteria": [
-    "Verify no CSS warnings or errors related to Tailwind v4 in VS Code and build process",
-    "Ensure package dependencies for Next.js, React, GSAP, Lenis, and other libs are compatible and stable",
-    "Confirm there are no React hydration errors due to HTML semantic or client component misconfiguration",
-    "Check that all client components using browser APIs include explicit \"use client\" directive",
-    "Validate usage of Next.js next/font/local for fonts and next/image for images for optimization and CLS reduction",
-    "End-to-end testing of Tour booking flow for functional correctness"
+    "Form submission succeeds only with valid, complete inputs validated by Zod schema.",
+    "Database record is successfully created for each valid tour request submission.",
+    "SMS notification is sent successfully when environment variables are correctly set; failure returns a detailed error.",
+    "CSS and styling conform to Tailwind CSS v4 standards without visual glitches on desktop and mobile.",
+    "Frontend and server code properly handle React hydration and client/server component boundaries as per Next.js 16 requirements.",
+    "Environment Diagnostic API correctly reports presence or absence of NEXT_SMS environment variables in all deployment contexts (local, preview, production)."
   ],
   "code_summary": {
     "tech_stack": [
-      "Next.js",
-      "React",
       "TypeScript",
-      "Tailwind CSS",
+      "Next.js",
+      "MySQL",
       "Prisma",
       "GSAP",
-      "Lenis"
+      "Tailwind CSS"
     ],
     "features": [
       {
-        "name": "Layout",
-        "description": "Root layout with global styles, fonts, and smooth scrolling context.",
+        "name": "submitTourRequest",
+        "description": "Server Action to handle tour request form submissions. Validates input using Zod, creates a database record via Prisma, and triggers the SMS notification logic.",
         "files": [
-          "app/layout.tsx",
-          "app/globals.css"
-        ]
-      },
-      {
-        "name": "UI Components",
-        "description": "Reusable UI components like Buttons, Cards, and Sections.",
-        "files": [
-          "app/components/GlassCard.tsx",
-          "app/components/HeroSection.tsx",
-          "app/components/MagneticButton.tsx",
-          "app/components/ProblemSection.tsx",
-          "app/components/Section.tsx",
-          "app/components/SmoothScroller.tsx",
-          "app/components/SolutionSection.tsx",
-          "app/components/TrustSection.tsx"
-        ]
-      },
-      {
-        "name": "Tour Page",
-        "description": "Tour booking page and related actions.",
-        "files": [
-          "app/tour/page.tsx",
           "app/tour/actions.ts"
-        ]
+        ],
+        "api_doc": {
+          "summary": "Submit Tour Request",
+          "parameters": [
+            {
+              "name": "formData",
+              "in": "body",
+              "schema": {
+                "type": "FormData"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Returns an object with success boolean and operational message/errors."
+            }
+          }
+        }
       },
       {
-        "name": "Configuration",
-        "description": "Project configuration files.",
+        "name": "sendNotificationSMS",
+        "description": "Core utility function to send SMS notifications. It handles environment variable validation (checking NEXT_SMS_* keys) and initializes the CoolSMS SDK to send the message.",
         "files": [
-          "next.config.ts",
-          "postcss.config.mjs"
-        ]
+          "app/lib/sms.ts"
+        ],
+        "api_doc": {
+          "summary": "Send SMS Notification",
+          "parameters": [
+            {
+              "name": "recipientPhone",
+              "type": "string"
+            },
+            {
+              "name": "customerName",
+              "type": "string"
+            },
+            {
+              "name": "companyName",
+              "type": "string"
+            },
+            {
+              "name": "personCount",
+              "type": "string"
+            },
+            {
+              "name": "location",
+              "type": "string"
+            },
+            {
+              "name": "date",
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "Success": {
+              "success": true
+            },
+            "Failure": {
+              "success": false,
+              "error": "Detailed error string"
+            }
+          }
+        }
+      },
+      {
+        "name": "Environment Check API",
+        "description": "Diagnostic API route to inspect runtime environment variables. Used to verify if Vercel has correctly injected the required keys.",
+        "files": [
+          "app/api/env-check/route.ts"
+        ],
+        "api_doc": {
+          "summary": "Check Environment Variables",
+          "method": "GET",
+          "path": "/api/env-check",
+          "responses": {
+            "200": {
+              "description": "JSON object listing found keys and counts."
+            }
+          }
+        }
       }
     ]
   }

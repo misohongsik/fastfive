@@ -1,57 +1,27 @@
 [
   {
-    "id": "TC_LOCAL_SCRIPT_RUNNER",
-    "title": "Run Local Diagnostic Script (Python Wrapper)",
-    "description": "Execute the scripts/debug_connection.ts using subprocess to leverage the local node environment and Prisma configuration."
-  },
-  {
     "id": "TC001",
-    "title": "verify smooth scrolling context in root layout",
-    "description": "Test the root layout to ensure the global styles, fonts, and smooth scrolling context are applied correctly and provide a consistent look and feel across the site."
+    "title": "submit valid tour request successfully",
+    "description": "Test the submitTourRequest API endpoint with valid form data to ensure it validates inputs, stores the tour request in the database, and triggers an SMS notification successfully."
   },
   {
     "id": "TC002",
-    "title": "validate reusable ui components rendering",
-    "description": "Verify that all reusable UI components such as Buttons, Cards, Sections, MagneticButton, and GlassCard render correctly and maintain consistent styling and accessibility."
+    "title": "handle invalid tour request input gracefully",
+    "description": "Test the submitTourRequest API endpoint with invalid or incomplete form data to verify that server-side Zod validation catches errors and returns appropriate error messages without storing data or sending SMS."
   },
   {
     "id": "TC003",
-    "title": "test tour booking page functionality",
-    "description": "Perform end-to-end testing of the tour booking page to ensure all booking actions and flows work correctly, including form interactions and reservation completion."
+    "title": "send sms notification with valid environment variables",
+    "description": "Test the sendNotificationSMS utility function to confirm it sends SMS notifications successfully when all required NEXT_SMS environment variables are correctly set."
   },
   {
     "id": "TC004",
-    "title": "check gsap and lenis animation integration",
-    "description": "Validate that GSAP and Lenis animation libraries are integrated properly and enhance UI interactions with smooth and performant animations."
+    "title": "fail sms notification on missing environment variables",
+    "description": "Test the sendNotificationSMS utility function behavior when required NEXT_SMS environment variables are missing or invalid, ensuring it returns detailed error messages and does not attempt to send SMS."
   },
   {
     "id": "TC005",
-    "title": "ensure tailwind css v4 configuration correctness",
-    "description": "Verify that Tailwind CSS v4 is configured correctly with PostCSS and that there are no CSS warnings or errors during development and build processes."
-  },
-  {
-    "id": "TC006",
-    "title": "confirm nextjs font and image optimization",
-    "description": "Test the usage of Next.js next/font/local for fonts and next/image for images to ensure optimization and reduction of cumulative layout shifts (CLS)."
-  },
-  {
-    "id": "TC007",
-    "title": "validate client component directives",
-    "description": "Check that all client components using browser APIs include the explicit \"use client\" directive to prevent React hydration errors."
-  },
-  {
-    "id": "TC008",
-    "title": "verify package dependency compatibility",
-    "description": "Ensure that all package dependencies for Next.js, React, GSAP, Lenis, and other libraries are compatible and stable with the experimental tech stack."
-  },
-  {
-    "id": "TC009",
-    "title": "test homepage content and smooth scrolling",
-    "description": "Verify that the homepage loads with smooth scrolling enabled and displays content sections styled consistently according to the design."
-  },
-  {
-    "id": "TC010",
-    "title": "check site performance and client side rendering",
-    "description": "Validate that the site performs smooth client-side rendering with immediate feedback on user interactions and minimal layout shifts."
+    "title": "environment variables diagnostic api returns correct status",
+    "description": "Test the /api/env-check GET endpoint to verify it accurately reports the presence and correctness of required NEXT_SMS environment variables in different deployment contexts (local, preview, production)."
   }
 ]

@@ -1,20 +1,20 @@
 {
   "status": "commited",
-  "type": "frontend",
+  "type": "backend",
   "scope": "codebase",
   "localEndpoint": "http://localhost:3000",
+  "backendAuthType": "public",
   "executionArgs": {
     "projectName": "Fastfive",
     "projectPath": "c:\\Users\\misoh\\Coupang_NaverBlog_Project\\Fastfive",
     "testIds": [
-      "TC001_Home_Page_Load",
-      "TC002_Tour_Page_Navigation",
-      "TC003_Tour_Form_Submission"
+      "TC003",
+      "TC004",
+      "TC005"
     ],
-    "additionalInstruction": "Verify the Liquid Background animation, Glow Text visibility, and the 'Book a Tour' button interactivity. Also check the 'Back to Home' link on the tour page.",
+    "additionalInstruction": "Focus specifically on validating SMS environment variable loading (NEXT_SMS_ prefix) and message sending failure handling. Mock the CoolSMS SDK to separate logic testing from actual network calls.",
     "envs": {
       "API_KEY": "sk-user-XLJJo3nVe44i_L3wvrqR_5v5NLYZk86_UWouAXpm5FWCLN85XrdOugvPlccEiSG1-Qj9O8-xeby6ao-IH0z3lqfJJmb8MyOpPSpHJoaKJ_jtLvhE_9U2-Mj9WlpCcVeCS6I"
     }
-  },
-  "proxy": "http://0dc16756-a8ae-4b6f-b87b-c9c63cae119e:lmEersTCISIqkNmVhGoiYJ73DuBPZuNI@tun.testsprite.com:8080"
+  }
 }

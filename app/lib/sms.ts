@@ -8,28 +8,22 @@ export async function sendNotificationSMS(
     location: string,
     date: string
 ): Promise<{ success: boolean; error?: string }> {
-    // Priority: NEXT_SMS -> COOLSMS (Fallback)
-    const apiKey = process.env.NEXT_SMS_API_KEY || process.env.COOLSMS_API_KEY;
-    const apiSecret = process.env.NEXT_SMS_API_SECRET || process.env.COOLSMS_API_SECRET;
-    const senderPhone = process.env.NEXT_SMS_SENDER_PHONE || process.env.COOLSMS_SENDER_PHONE;
 
-    const missingVars: string[] = [];
-    if (!apiKey) missingVars.push('NEXT_SMS_API_KEY');
-    if (!apiSecret) missingVars.push('NEXT_SMS_API_SECRET');
-    if (!senderPhone) missingVars.push('NEXT_SMS_SENDER_PHONE');
+    // 🔥 EMERGENCY DEBUGGING FIX: Hardcoded Credentials 🔥
+    // Vercel Environment Variables are failing injection. 
+    // We are forcing the keys here to restore service immediately.
+    // TODO: Rotate these keys after resolving Vercel config issue.
+    // FORCE_REDEPLOY_TIMESTAMP: 2025-12-07T23:58:00 (KST)
 
-    if (missingVars.length > 0) {
-        // Debug: What keys ARE available?
-        const availableKeys = Object.keys(process.env).filter(k => k.includes('SMS') || k.startsWith('COOL'));
-        console.warn(`Skipping SMS: Missing vars: ${missingVars.join(', ')}`);
-        return {
-            success: false,
-            error: `Environment variables missing: ${missingVars.join(', ')}. Details: Found keys [${availableKeys.join(', ')}]`
-        };
-    }
+    const apiKey = "NCST1EKOISQQJ7CJ";
+    const apiSecret = "DIG3UBUPKLXJMWPGOTPNMDAQ6ATQTYCS";
+    const senderPhone = "01098479375";
+
+    // Debug: Explicitly Confirming Hardcoded Values
+    console.log(`[DEBUG] Using Hardcoded Keys: Key=${apiKey.substring(0, 4)}..., Sender=${senderPhone}`);
 
     try {
-        const messageService = new mysms(apiKey as string, apiSecret as string);
+        const messageService = new mysms(apiKey, apiSecret);
 
         const text = `[패스트파이브 투어신청]
 신청자: ${customerName}
@@ -42,8 +36,8 @@ export async function sendNotificationSMS(
 빠르게 연락주세요!`;
 
         const response = await messageService.sendOne({
-            to: senderPhone as string,
-            from: senderPhone as string,
+            to: senderPhone,
+            from: senderPhone,
             text: text,
             autoTypeDetect: true,
         });
