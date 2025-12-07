@@ -78,8 +78,8 @@ export default function ProblemSection() {
         <section ref={sectionRef} className="relative bg-[#050505] text-white">
             <div ref={triggerRef} className="h-screen w-full flex items-center overflow-hidden">
 
-                {/* Intro Text (Fixed Position logic could be added here, currently scrolling with flow) */}
-                <div className="absolute left-6 md:left-20 top-32 md:top-20 z-10 max-w-sm pointer-events-none mix-blend-difference">
+                {/* Intro Text - Increased top spacing for mobile to clear navbar */}
+                <div className="absolute left-6 md:left-20 top-48 md:top-20 z-10 max-w-sm pointer-events-none mix-blend-difference">
                     <span className="text-red-500 font-bold tracking-widest uppercase mb-2 block">
                         The Reality
                     </span>
