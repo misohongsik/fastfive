@@ -1,15 +1,5 @@
 import mysms from 'coolsms-node-sdk';
 
-const apiKey = process.env.COOLSMS_API_KEY!;
-const apiSecret = process.env.COOLSMS_API_SECRET!;
-const senderPhone = process.env.COOLSMS_SENDER_PHONE || '01000000000';
-
-// Fix: Direct usage if it's the module export, or checking typing.
-// Ideally: const messageService = new mysms(apiKey, apiSecret) or similar.
-// Since we are in TS, let's try 'require' to be safe with unknown module structure or straight import.
-// For coolsms-node-sdk, it is often:
-const messageService = new mysms(apiKey, apiSecret);
-
 export async function sendNotificationSMS(
     recipientPhone: string,
     customerName: string,
@@ -18,7 +8,20 @@ export async function sendNotificationSMS(
     location: string,
     date: string
 ) {
+    // Lazy load env vars and service to prevent module-level crashes
+    const apiKey = process.env.COOLSMS_API_KEY;
+    const apiSecret = process.env.COOLSMS_API_SECRET;
+    const senderPhone = process.env.COOLSMS_SENDER_PHONE;
+
+    if (!apiKey || !apiSecret || !senderPhone) {
+        console.warn('Skipping SMS: Missing COOLSMS environment variables.');
+        return false;
+    }
+
     try {
+        // Initialize service here, only when needed and safe
+        const messageService = new mysms(apiKey, apiSecret);
+
         const text = `[패스트파이브 투어신청]
 신청자: ${customerName}
 회사명: ${companyName}
@@ -28,12 +31,6 @@ export async function sendNotificationSMS(
 희망일: ${date}
 
 빠르게 연락주세요!`;
-
-        // Only send if we have a valid sender phone (not default placeholder if user didn't set it)
-        if (senderPhone === '01000000000') {
-            console.warn('Skipping SMS: No valid COOLSMS_SENDER_PHONE provided.');
-            return false;
-        }
 
         const response = await messageService.sendOne({
             to: senderPhone, // Send TO the admin
